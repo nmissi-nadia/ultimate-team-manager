@@ -13,24 +13,35 @@
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
 
     <header class="bg-gray-800 p-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold">EA FC 24 Squad Builder</h1>
-        <nav>
-          <ul class="flex space-x-4">
-            <li><a href="#" class="hover:text-green-400">Players</a></li>
-            <li><a href="#" class="hover:text-green-400">Squad Builder</a></li>
-            <li><a href="#" class="hover:text-green-400">SBCs</a></li>
-            <li><a href="#" class="hover:text-green-400">Market</a></li>
-            <li><a href="#" class="hover:text-green-400">Evolutions</a></li>
-          </ul>
-        </nav>
+        <!-- <h1 class="text-xl font-bold">EA FC 24 Squad Builder</h1> -->
+        <nav class="bg-gray-900 text-white w-full">
+            <div class="container mx-auto flex justify-between items-center p-4">
+              <!-- Logo -->
+              <a href="#" class="text-2xl font-bold hover:text-yellow-400">Ultimate Team</a>
+          
+              <!-- Hamburger Menu -->
+              <button id="menu-toggle" class="block md:hidden text-2xl focus:outline-none">
+                ☰
+              </button>
+          
+              <!-- Menu Links -->
+              <ul id="menu" class="hidden md:flex space-x-6 text-lg">
+                <li><a href="#home" class="hover:text-yellow-400">Accueil</a></li>
+                <li><a href="#builder" class="hover:text-yellow-400">Équipe</a></li>
+                <li><a href="#players" class="hover:text-yellow-400">Joueurs</a></li>
+                <li><a href="#about" class="hover:text-yellow-400">À propos</a></li>
+              </ul>
+            </div>
+          </nav>
+          
       </header>
     
       <!-- Contenu Principal -->
-  <main class="p-6" >
+    <main class="p-6" >
     <!-- Section Formulaire -->
-    <section class="bg-gray-800 p-6 rounded-lg mb-6">
+    <section class="bg-gray-800 p-6 rounded-lg mb-6 hidden">
       <h2 class="text-2xl font-semibold mb-4">Ajouter un joueur</h2>
-      <form id="add-player-form" class="space-y-4 hidden">
+      <form id="add-player-form" class="space-y-4">
         <div>
           <label for="player-name" class="block mb-2 text-sm">Nom du joueur</label>
           <input type="text" id="player-name" class="w-full p-2 rounded-lg bg-gray-700 text-white" placeholder="Entrez le nom">
@@ -57,71 +68,184 @@
     </section>
 
     <!-- Section Équipe -->
-    <section class="bg-gray-800 p-6 rounded-lg" id="main">
-      <h2 class="text-2xl font-semibold mb-4">Équipe</h2>
-      <div class="relative w-[300px] h-[485px] bg-cover bg-center" style="background-image: url('https://selimdoyranli.com/cdn/fut-player-card/img/card_bg.png');">
-        <!-- Player Card Top -->
-        <div class="flex px-6 text-[#e9cc74]">
-          <div class="absolute text-xs uppercase leading-6">
-            <div class="text-2xl">97</div>
-            <div class="text-base">RW</div>
-            <div class="w-8 h-6 mt-1">
-              <img class="w-full h-full object-contain" src="https://selimdoyranli.com/cdn/fut-player-card/img/argentina.svg" alt="Argentina">
+     <section class="grid grid-cols-4 gap-4">
+        <div class="bg-gray-800 p-6 rounded-lg col-span-3"  id="main">
+            <h2 class="text-2xl font-semibold mb-4">Équipe</h2>
+            <div class="relative w-[100px] h-[161px] bg-cover bg-center" style="background-image: url('https://selimdoyranli.com/cdn/fut-player-card/img/card_bg.png');">
+              <!-- Player Card Top -->
+              <div class="flex px-2 text-[#e9cc74]">
+                <div class="absolute text-[6px] uppercase leading-[10px]">
+                  <div class="text-[8px]">97</div>
+                  <div class="text-[6px]">RW</div>
+                  <div class="w-3 h-2 mt-1">
+                    <img class="w-full h-full object-contain" src="https://selimdoyranli.com/cdn/fut-player-card/img/argentina.svg" alt="Argentina">
+                  </div>
+                  <div class="w-3 h-4 mt-1">
+                    <img class="w-full h-full object-contain" src="https://selimdoyranli.com/cdn/fut-player-card/img/barcelona.svg" alt="Barcelona">
+                  </div>
+                </div>
+                <div class="relative w-16 h-16 mx-auto">
+                  <img class="object-contain" src="https://selimdoyranli.com/cdn/fut-player-card/img/messi.png" alt="Messi">
+                  <div class="absolute bottom-0 right-0 text-[4px] font-bold text-right uppercase">
+                    <span class="ml-1">4*SM</span>
+                    <span class="ml-1">4*WF</span>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Player Card Bottom -->
+              <div class="relative w-4/5 mx-auto text-[#e9cc74]">
+                <!-- Player Name -->
+                <div class="border-b border-[#e9cc74]/10 pb-[2px] text-center uppercase text-[6px]">
+                  <span class="block">Messi</span>
+                </div>
+                <!-- Player Features -->
+                <div class="flex justify-center mt-1">
+                  <div class="px-2 border-r border-[#e9cc74]/10">
+                    <div class="flex text-[5px] uppercase">
+                      <span class="font-bold mr-[1px]">97</span>
+                      <span>PAC</span>
+                    </div>
+                    <div class="flex text-[5px] uppercase">
+                      <span class="font-bold mr-[1px]">95</span>
+                      <span>SHO</span>
+                    </div>
+                    <div class="flex text-[5px] uppercase">
+                      <span class="font-bold mr-[1px]">94</span>
+                      <span>PAS</span>
+                    </div>
+                  </div>
+                  <div class="px-2">
+                    <div class="flex text-[5px] uppercase">
+                      <span class="font-bold mr-[1px]">99</span>
+                      <span>DRI</span>
+                    </div>
+                    <div class="flex text-[5px] uppercase">
+                      <span class="font-bold mr-[1px]">35</span>
+                      <span>DEF</span>
+                    </div>
+                    <div class="flex text-[5px] uppercase">
+                      <span class="font-bold mr-[1px]">68</span>
+                      <span>PHY</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="w-8 h-10 mt-1">
-              <img class="w-full h-full object-contain" src="https://selimdoyranli.com/cdn/fut-player-card/img/barcelona.svg" alt="Barcelona">
-            </div>
-          </div>
-          <div class="relative w-52 h-52 mx-auto">
-            <img class="object-contain" src="https://selimdoyranli.com/cdn/fut-player-card/img/messi.png" alt="Messi">
-            <div class="absolute bottom-0 right-0 text-sm font-bold text-right uppercase">
-              <span class="ml-2">4*SM</span>
-              <span class="ml-2">4*WF</span>
-            </div>
-          </div>
+            
+            <p class="mt-4 text-gray-400">Chimie Totale : <span id="total-chemistry" class="text-green-400">0</span>/100</p>
         </div>
-    
-        <!-- Player Card Bottom -->
-        <div class="relative w-4/5 mx-auto text-[#e9cc74]">
-          <!-- Player Name -->
-          <div class="border-b border-[#e9cc74]/10 pb-1 text-center uppercase text-lg">
-            <span class="block">Messi</span>
-          </div>
-          <!-- Player Features -->
-          <div class="flex justify-center mt-2">
-            <div class="px-6 border-r border-[#e9cc74]/10">
-              <div class="flex text-sm uppercase">
-                <span class="font-bold mr-1">97</span>
-                <span>PAC</span>
-              </div>
-              <div class="flex text-sm uppercase">
-                <span class="font-bold mr-1">95</span>
-                <span>SHO</span>
-              </div>
-              <div class="flex text-sm uppercase">
-                <span class="font-bold mr-1">94</span>
-                <span>PAS</span>
+          
+        <div class="bg-gray-900 text-white p-6 rounded-lg shadow-md w-80">
+            <!-- Create Squad -->
+            <div class="mb-6">
+              <label for="squad-name" class="block text-sm font-medium">Create Squad</label>
+              <div class="relative mt-2">
+                <input id="squad-name" type="text" placeholder="Squad name"
+                  class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
+                <button
+                  class="absolute inset-y-0 right-2 flex items-center px-2 bg-gray-800 text-gray-400 rounded-lg focus:outline-none">
+                  <i class="fas fa-search"></i>
+                </button>
               </div>
             </div>
-            <div class="px-6">
-              <div class="flex text-sm uppercase">
-                <span class="font-bold mr-1">99</span>
-                <span>DRI</span>
+          
+            <!-- Squad Info -->
+            <div class="border-t border-gray-700 pt-4">
+              <label class="block text-sm font-medium mb-2">Squad Info</label>
+              <div class="flex items-center justify-between mb-4">
+                <select class="bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
+                  <option>4-1-2-1-2 (2)</option>
+                  <!-- Add more options here -->
+                </select>
+                <div class="flex items-center space-x-1 text-yellow-400">
+                  <span>Squad Rating: 32</span>
+                  <div class="flex">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                </div>
               </div>
-              <div class="flex text-sm uppercase">
-                <span class="font-bold mr-1">35</span>
-                <span>DEF</span>
+          
+              <!-- Player Stats -->
+              <div class="grid grid-cols-3 gap-2 mb-4">
+                <div class="text-center">
+                  <span class="block text-green-400 font-bold">97</span>
+                  <span class="text-sm text-gray-400">PAC</span>
+                </div>
+                <div class="text-center">
+                  <span class="block text-green-400 font-bold">96</span>
+                  <span class="text-sm text-gray-400">SHO</span>
+                </div>
+                <div class="text-center">
+                  <span class="block text-green-400 font-bold">91</span>
+                  <span class="text-sm text-gray-400">PAS</span>
+                </div>
+                <div class="text-center">
+                  <span class="block text-green-400 font-bold">96</span>
+                  <span class="text-sm text-gray-400">DRI</span>
+                </div>
+                <div class="text-center">
+                  <span class="block text-yellow-400 font-bold">59</span>
+                  <span class="text-sm text-gray-400">DEF</span>
+                </div>
+                <div class="text-center">
+                  <span class="block text-green-400 font-bold">91</span>
+                  <span class="text-sm text-gray-400">PHY</span>
+                </div>
               </div>
-              <div class="flex text-sm uppercase">
-                <span class="font-bold mr-1">68</span>
-                <span>PHY</span>
+          
+              <!-- Full Squad Averages -->
+              <div class="text-center text-sm text-gray-400 mb-4">
+                <span class="cursor-pointer hover:text-white">Full Squad Averages</span>
+                <i class="fas fa-chevron-down ml-1"></i>
               </div>
             </div>
-          </div>
+          
+            <!-- Total Chemistry -->
+            <div class="border-t border-gray-700 pt-4">
+              <label class="block text-sm font-medium mb-2">Total Chemistry</label>
+              <div class="flex items-center justify-between">
+                <div class="w-full bg-gray-800 h-2 rounded-full relative overflow-hidden">
+                  <div class="bg-green-500 h-full w-1/3 absolute"></div>
+                </div>
+                <span class="ml-3 text-sm">6/33</span>
+              </div>
+            </div>
         </div>
-      </div>
-      <p class="mt-4 text-gray-400">Chimie Totale : <span id="total-chemistry" class="text-green-400">0</span>/100</p>
-    </section>
+        <div class="grid grid-cols-2 col-span-4 sm:grid-cols-3 lg:grid-cols-5 gap-4 bg-gray-800 p-4 rounded-lg">
+            <!-- Reserve Player Card 1 -->
+            <div class="relative w-[100px] h-[160px] bg-cover bg-center" style="background-image: url('https://selimdoyranli.com/cdn/fut-player-card/img/card_bg.png');">
+              <div class="absolute top-2 left-2 text-xs text-yellow-400">
+                <div class="font-bold text-sm">85</div>
+                <div class="uppercase">CB</div>
+              </div>
+              <div class="absolute bottom-2 left-2 text-white text-xs uppercase">
+                <span>Player 1</span>
+              </div>
+              <img class="absolute bottom-6 right-2 w-10 h-10 object-cover" src="https://selimdoyranli.com/cdn/fut-player-card/img/argentina.svg" alt="Nation">
+            </div>
+          
+            <!-- Reserve Player Card 2 -->
+            <div class="relative w-[100px] h-[160px] bg-cover bg-center" style="background-image: url('https://selimdoyranli.com/cdn/fut-player-card/img/card_bg.png');">
+              <div class="absolute top-2 left-2 text-xs text-yellow-400">
+                <div class="font-bold text-sm">78</div>
+                <div class="uppercase">CM</div>
+              </div>
+              <div class="absolute bottom-2 left-2 text-white text-xs uppercase">
+                <span>Player 2</span>
+              </div>
+              <img class="absolute bottom-6 right-2 w-10 h-10 object-cover" src="https://selimdoyranli.com/cdn/fut-player-card/img/barcelona.svg" alt="Nation">
+            </div>
+          
+            <!-- Add more reserve player cards here -->
+          </div>
+           
+     </section>
+   
   </main>
 
     <!-- Footer -->

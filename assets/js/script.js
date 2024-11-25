@@ -1,3 +1,7 @@
+document.getElementById("menu-toggle").addEventListener("click", () => {
+    const menu = document.getElementById("menu");
+    menu.classList.toggle("hidden");
+  });
 document.addEventListener("DOMContentLoaded", function() {
     const playerForm = document.getElementById('player-form');
     const playerNameInput = document.getElementById('player-name');
