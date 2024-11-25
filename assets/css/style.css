@@ -1,0 +1,8 @@
+body{
+    background: url("https://media.playstation.com/is/image/SCEA/fifa-19-stadium-background-blur-01-ps4-us-08jun18?$native_nt$") no-repeat center center/cover;
+}
+#main{
+    background: url(../imgs/pitchonly.jpg) no-repeat center center/cover;
+    height: 100vh;
+    
+}

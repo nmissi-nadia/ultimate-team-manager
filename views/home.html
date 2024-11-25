@@ -6,10 +6,129 @@
     <meta name="description" content="Créez, personnalisez et gérez votre équipe Ultimate Team pour EA FC 25 avec des fonctionnalités interactives. Optimisez vos formations tactiques, calculez la chimie d'équipe, et sauvegardez vos configurations." />
     <meta name="keywords" content="Ultimate Team, EA FC 25, gestion d'équipe, formations tactiques, chimie d'équipe, football, FUT, création d'équipe, gestion des joueurs" />
     <meta name="author" content="Nadia Nmissi" />
-
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
     <title>Ultimate Team Manager - Créez et Gérez Votre Équipe EA FC 25</title>
 </head>
-<body>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+
+    <header class="bg-gray-800 p-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold">EA FC 24 Squad Builder</h1>
+        <nav>
+          <ul class="flex space-x-4">
+            <li><a href="#" class="hover:text-green-400">Players</a></li>
+            <li><a href="#" class="hover:text-green-400">Squad Builder</a></li>
+            <li><a href="#" class="hover:text-green-400">SBCs</a></li>
+            <li><a href="#" class="hover:text-green-400">Market</a></li>
+            <li><a href="#" class="hover:text-green-400">Evolutions</a></li>
+          </ul>
+        </nav>
+      </header>
     
-</body>
+      <!-- Contenu Principal -->
+  <main class="p-6" >
+    <!-- Section Formulaire -->
+    <section class="bg-gray-800 p-6 rounded-lg mb-6">
+      <h2 class="text-2xl font-semibold mb-4">Ajouter un joueur</h2>
+      <form id="add-player-form" class="space-y-4 hidden">
+        <div>
+          <label for="player-name" class="block mb-2 text-sm">Nom du joueur</label>
+          <input type="text" id="player-name" class="w-full p-2 rounded-lg bg-gray-700 text-white" placeholder="Entrez le nom">
+        </div>
+        <div>
+          <label for="player-position" class="block mb-2 text-sm">Position</label>
+          <select id="player-position" class="w-full p-2 rounded-lg bg-gray-700 text-white">
+            <option value="GK">Gardien (GK)</option>
+            <option value="CB">Défenseur Central (CB)</option>
+            <option value="LB">Latéral Gauche (LB)</option>
+            <option value="RB">Latéral Droit (RB)</option>
+            <option value="CM">Milieu Central (CM)</option>
+            <option value="LW">Ailier Gauche (LW)</option>
+            <option value="RW">Ailier Droit (RW)</option>
+            <option value="ST">Attaquant (ST)</option>
+          </select>
+        </div>
+        <div>
+          <label for="player-rating" class="block mb-2 text-sm">Note</label>
+          <input type="number" id="player-rating" class="w-full p-2 rounded-lg bg-gray-700 text-white" placeholder="Exemple : 85" min="1" max="99">
+        </div>
+        <button type="submit" class="bg-green-500 px-4 py-2 rounded-lg text-white hover:bg-green-600">Ajouter le joueur</button>
+      </form>
+    </section>
+
+    <!-- Section Équipe -->
+    <section class="bg-gray-800 p-6 rounded-lg" id="main">
+      <h2 class="text-2xl font-semibold mb-4">Équipe</h2>
+      <div class="relative w-[300px] h-[485px] bg-cover bg-center" style="background-image: url('https://selimdoyranli.com/cdn/fut-player-card/img/card_bg.png');">
+        <!-- Player Card Top -->
+        <div class="flex px-6 text-[#e9cc74]">
+          <div class="absolute text-xs uppercase leading-6">
+            <div class="text-2xl">97</div>
+            <div class="text-base">RW</div>
+            <div class="w-8 h-6 mt-1">
+              <img class="w-full h-full object-contain" src="https://selimdoyranli.com/cdn/fut-player-card/img/argentina.svg" alt="Argentina">
+            </div>
+            <div class="w-8 h-10 mt-1">
+              <img class="w-full h-full object-contain" src="https://selimdoyranli.com/cdn/fut-player-card/img/barcelona.svg" alt="Barcelona">
+            </div>
+          </div>
+          <div class="relative w-52 h-52 mx-auto">
+            <img class="object-contain" src="https://selimdoyranli.com/cdn/fut-player-card/img/messi.png" alt="Messi">
+            <div class="absolute bottom-0 right-0 text-sm font-bold text-right uppercase">
+              <span class="ml-2">4*SM</span>
+              <span class="ml-2">4*WF</span>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Player Card Bottom -->
+        <div class="relative w-4/5 mx-auto text-[#e9cc74]">
+          <!-- Player Name -->
+          <div class="border-b border-[#e9cc74]/10 pb-1 text-center uppercase text-lg">
+            <span class="block">Messi</span>
+          </div>
+          <!-- Player Features -->
+          <div class="flex justify-center mt-2">
+            <div class="px-6 border-r border-[#e9cc74]/10">
+              <div class="flex text-sm uppercase">
+                <span class="font-bold mr-1">97</span>
+                <span>PAC</span>
+              </div>
+              <div class="flex text-sm uppercase">
+                <span class="font-bold mr-1">95</span>
+                <span>SHO</span>
+              </div>
+              <div class="flex text-sm uppercase">
+                <span class="font-bold mr-1">94</span>
+                <span>PAS</span>
+              </div>
+            </div>
+            <div class="px-6">
+              <div class="flex text-sm uppercase">
+                <span class="font-bold mr-1">99</span>
+                <span>DRI</span>
+              </div>
+              <div class="flex text-sm uppercase">
+                <span class="font-bold mr-1">35</span>
+                <span>DEF</span>
+              </div>
+              <div class="flex text-sm uppercase">
+                <span class="font-bold mr-1">68</span>
+                <span>PHY</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="mt-4 text-gray-400">Chimie Totale : <span id="total-chemistry" class="text-green-400">0</span>/100</p>
+    </section>
+  </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center p-4 mt-6 ">
+      <p>&copy; 2024 Ultimate Team Manager</p>
+    </footer>
+  
+    <!-- Lien vers le fichier JavaScript -->
+    <script src="../assets/js/script.js"></script>
 </html>
