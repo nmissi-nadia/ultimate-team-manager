@@ -1,4 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const menuToggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("menu");
+  const navbar = document.getElementById("navbar");
+  const menuLinks = document.querySelectorAll(".nav-link");
+
+  // Toggle menu visibility for mobile
+  menuToggle.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+    menu.classList.toggle("flex");
+    menu.classList.add("flex-col", "space-y-4", "bg-gray-900", "p-4", "rounded-lg", "md:flex-row", "md:space-y-0", "md:space-x-8");
+  });
+
+  // Change active link on scroll
+  const sections = document.querySelectorAll("section");
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        menuLinks.forEach((link) => {
+          link.classList.remove("text-yellow-400", "font-bold");
+          if (link.getAttribute("href") === `#${entry.target.id}`) {
+            link.classList.add("text-yellow-400", "font-bold");
+          }
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+
+  sections.forEach((section) => observer.observe(section));
+
+  // Add sticky effect
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add("bg-gray-800", "shadow-md");
+    } else {
+      navbar.classList.remove("bg-gray-800", "shadow-md");
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
   const formationSelector = document.getElementById("formation-selector");
   const playerCardsContainer = document.getElementById("player-cards-container");
 

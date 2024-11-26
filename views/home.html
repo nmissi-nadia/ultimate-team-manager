@@ -14,25 +14,26 @@
 
     <header class="bg-gray-800 p-4 flex justify-between items-center">
         <!-- <h1 class="text-xl font-bold">EA FC 24 Squad Builder</h1> -->
-        <nav class="bg-gray-900 text-white w-full">
-            <div class="container mx-auto flex justify-between items-center p-4">
-              <!-- Logo -->
-              <a href="#" class="text-2xl font-bold hover:text-yellow-400">Ultimate Team</a>
-          
-              <!-- Hamburger Menu -->
-              <button id="menu-toggle" class="block md:hidden text-2xl focus:outline-none">
-                ☰
-              </button>
-          
-              <!-- Menu Links -->
-              <ul id="menu" class="hidden md:flex space-x-6 text-lg">
-                <li><a href="#home" class="hover:text-yellow-400">Accueil</a></li>
-                <li><a href="#builder" class="hover:text-yellow-400">Équipe</a></li>
-                <li><a href="#players" class="hover:text-yellow-400">Joueurs</a></li>
-                <li><a href="#about" class="hover:text-yellow-400">À propos</a></li>
-              </ul>
-            </div>
-          </nav>
+        <nav id="navbar" class="bg-gray-900 text-white w-full fixed top-0 z-10 shadow-lg">
+          <div class="container mx-auto flex justify-between items-center py-4 px-6">
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-bold text-yellow-400 hover:text-yellow-300">Ultimate Team</a>
+        
+            <!-- Hamburger Menu (pour mobile) -->
+            <button id="menu-toggle" class="block md:hidden text-3xl text-white focus:outline-none">
+              ☰
+            </button>
+        
+            <!-- Menu Links -->
+            <ul id="menu" class="hidden md:flex space-x-8">
+              <li><a href="#home" class="nav-link hover:text-yellow-400 transition">Accueil</a></li>
+              <li><a href="#builder" class="nav-link hover:text-yellow-400 transition">Équipe</a></li>
+              <li><a href="#players" class="nav-link hover:text-yellow-400 transition">Joueurs</a></li>
+              <li><a href="#about" class="nav-link hover:text-yellow-400 transition">À propos</a></li>
+            </ul>
+          </div>
+        </nav>
+        
           
       </header>
     
