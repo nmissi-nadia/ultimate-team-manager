@@ -69,7 +69,7 @@
 
     <!-- Section Équipe -->
      <section class="grid grid-cols-4 gap-4">
-        <div class="bg-gray-800 p-6 rounded-lg col-span-3 shadow-lg relative max-w-5xl grid grid-cols-7 gap-4 ml-6 md:col-span-4"  id="main">
+        <div class="bg-gray-800 p-6 rounded-lg col-span-4 shadow-lg relative max-w-5xl grid grid-cols-7 gap-4 ml-6 md:col-span-3"  id="main">
           <!-- Manager -->
           <div class="-ml-5 col-span-1 flex justify-center mb-10">
             <div class="mx-auto mt-10 md:mb-[-30px] tablet:mt-16 scale-[1.5] tablet:scale-[1.8] sb-large:scale-[1.5]">
@@ -87,8 +87,7 @@
                     </div>
                   </div>
                 </div>
-
-                  </div>
+              </div>
           </div>
             
             <h2 class="text-2xl font-semibold mb-4">Équipe</h2>
@@ -156,11 +155,11 @@
             </div>
             
             <p class="mt-4 text-gray-400">Chimie Totale : <span id="total-chemistry" class="text-green-400">0</span>/100</p> -->
-            <div id="formation-grid" class="grid grid-cols-6 gap-4 relative col-span-6">
+            <div id="player-cards-container" class="grid grid-cols-6 gap-4 relative col-span-6">
               
       
               <!-- LW -->
-              <div class="col-start-1 flex justify-center -mt-16 -mr-10">
+              <!-- <div class="col-start-1 flex justify-center -mt-16 -mr-10">
                 <div class="ml-40 col-span-1 flex justify-center mb-10">
                   
                     <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
@@ -179,11 +178,11 @@
                       </div>
       
                 </div>
-              </div>
+              </div> -->
       
               <!-- ST -->
               
-                <div class="col-start-3 col-end-5 flex justify-center -mt-32">
+                <!-- <div class="col-start-3 col-end-5 flex justify-center -mt-32">
                   <div class="-ml-5 col-span-1 flex justify-center mb-10">
                     
                       <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
@@ -204,10 +203,10 @@
                           </div>
                   
                   
-                </div>
+                </div> -->
       
               <!-- RW -->
-              <div class="col-start-6 flex justify-center -mt-16">
+              <!-- <div class="col-start-6 flex justify-center -mt-16">
                 <div class="ml-40 col-span-1 flex justify-center mb-10">
                   
                   <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
@@ -226,10 +225,10 @@
                     </div>
     
               </div>
-              </div>
+              </div> -->
       
               <!-- CM (3 joueurs centrés) -->
-              <div class="col-start-2 flex justify-center">
+              <!-- <div class="col-start-2 flex justify-center">
                 <div class="ml-40 col-span-1 flex justify-center mb-10">
                   
                   <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
@@ -288,10 +287,10 @@
                     </div>
     
               </div>
-              </div>
+              </div> -->
       
               <!-- Défenseurs -->
-              <div class="col-start-1 flex justify-center mt-10">
+              <!-- <div class="col-start-1 flex justify-center mt-10">
                 <div class="ml-40 col-span-1 flex justify-center mb-10">
                   
                   <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
@@ -370,10 +369,10 @@
                     </div>
     
               </div>
-              </div>
+              </div> -->
       
               <!-- Gardien -->
-              <div class="col-start-4 flex justify-center mt">
+              <!-- <div class="col-start-4 flex justify-center mt">
                 <div class="col-span-1 flex justify-center mb-1">
                   
                   <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
@@ -392,11 +391,11 @@
                     </div>
     
               </div>
-              </div>
+              </div> -->
             </div>
         </div>
           
-        <div class="bg-gray-900 text-white p-6 rounded-lg shadow-md w-80  md:hidden">
+        <div class="bg-gray-900 text-white p-6 rounded-lg shadow-md w-80 hidden  md:block">
             <!-- Create Squad -->
             <div class="mb-6">
               <label for="squad-name" class="block text-sm font-medium">Create Squad</label>
@@ -414,8 +413,11 @@
             <div class="border-t border-gray-700 pt-4">
               <label class="block text-sm font-medium mb-2">Squad Info</label>
               <div class="flex items-center justify-between mb-4">
-                <select class="bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
-                  <option>4-1-2-1-2 (2)</option>
+                <select id="formation-selector" class="bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <option value="4-4-2">4-4-2</option>
+                    <option value="4-3-3">4-3-3</option>
+                    <option value="3-5-2">3-5-2</option>
+                
                   <!-- Add more options here -->
                 </select>
                 <div class="flex items-center space-x-1 text-yellow-400">
