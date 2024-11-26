@@ -69,10 +69,32 @@
 
     <!-- Section Équipe -->
      <section class="grid grid-cols-4 gap-4">
-        <div class="bg-gray-800 p-6 rounded-lg col-span-3"  id="main">
+        <div class="bg-gray-800 p-6 rounded-lg col-span-3 shadow-lg relative max-w-5xl grid grid-cols-7 gap-4 ml-6 md:col-span-4"  id="main">
+          <!-- Manager -->
+          <div class="-ml-5 col-span-1 flex justify-center mb-10">
+            <div class="mx-auto mt-10 md:mb-[-30px] tablet:mt-16 scale-[1.5] tablet:scale-[1.8] sb-large:scale-[1.5]">
+              <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
+                <div class="w-full flex absolute top-1 md:top-[-6px] sb-large:top-0">
+                  <div class="flex flex-row gap-x-[2px] px-1 bg-black rounded text-white text-tiny desktop:text-xs sb-large:text-sm border border-[1px] border-[#493422] items-center w-fit mx-auto py-[1px]">
+                    <div class="absolute left-[14%] top-[22%] sb-large:left-[14%] flex flex-col text-left" style="color: rgb(89, 77, 44);">
+                      <div class="rounded-lg p-4 pl-1 pt-6 relative w-20 h-28 ">
+                        <p class="text-sm font-bold mb-2">Manager</p>
+                        <button class="bg-green-700 w-10 h-7 rounded-lg flex items-center justify-center hover:bg-green-600">
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+
+                  </div>
+          </div>
+            
             <h2 class="text-2xl font-semibold mb-4">Équipe</h2>
-            <div class="relative w-[100px] h-[161px] bg-cover bg-center" style="background-image: url('https://selimdoyranli.com/cdn/fut-player-card/img/card_bg.png');">
-              <!-- Player Card Top -->
+            
+            <!-- <div class="relative w-[100px] h-[161px] bg-cover bg-center" style="background-image: url('https://selimdoyranli.com/cdn/fut-player-card/img/card_bg.png');">
+              Player Card Top
               <div class="flex px-2 text-[#e9cc74]">
                 <div class="absolute text-[6px] uppercase leading-[10px]">
                   <div class="text-[8px]">97</div>
@@ -93,13 +115,13 @@
                 </div>
               </div>
             
-              <!-- Player Card Bottom -->
+              Player Card Bottom
               <div class="relative w-4/5 mx-auto text-[#e9cc74]">
-                <!-- Player Name -->
+                Player Name
                 <div class="border-b border-[#e9cc74]/10 pb-[2px] text-center uppercase text-[6px]">
                   <span class="block">Messi</span>
                 </div>
-                <!-- Player Features -->
+                Player Features
                 <div class="flex justify-center mt-1">
                   <div class="px-2 border-r border-[#e9cc74]/10">
                     <div class="flex text-[5px] uppercase">
@@ -133,10 +155,142 @@
               </div>
             </div>
             
-            <p class="mt-4 text-gray-400">Chimie Totale : <span id="total-chemistry" class="text-green-400">0</span>/100</p>
+            <p class="mt-4 text-gray-400">Chimie Totale : <span id="total-chemistry" class="text-green-400">0</span>/100</p> -->
+            <div id="formation-grid" class="grid grid-cols-6 gap-4 relative col-span-6">
+              
+      
+              <!-- LW -->
+              <div class="col-start-1 flex justify-center -mt-16 -mr-10">
+                <div class="-ml-5 col-span-1 flex justify-center mb-10">
+                  
+                    <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
+                      <div class="w-full flex absolute top-1 md:top-[-6px] sb-large:top-0">
+                        <div class="flex flex-row gap-x-[2px] px-1 bg-black rounded text-white text-tiny desktop:text-xs sb-large:text-sm border border-[1px] border-[#493422] items-center w-fit mx-auto py-[1px]">
+                          <div class="absolute left-[14%] top-[22%] sb-large:left-[14%] flex flex-col text-left" style="color: rgb(89, 77, 44);">
+                            <div class="rounded-lg p-4 relative w-20 h-28 text-center">
+                              <p class="text-sm font-bold mb-2">LW</p>
+                              <button class="bg-green-600 w-10 h-7 rounded-lg flex items-center justify-center hover:bg-green-600">
+                                +
+                              </button>
+                            </div>
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+      
+                        </div>
+                
+                
+              </div>
+      
+              <!-- ST -->
+              
+                <div class="col-start-3 col-end-5 flex justify-center -mt-32">
+                  <div class="-ml-5 col-span-1 flex justify-center mb-10">
+                    
+                      <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
+                        <div class="w-full flex absolute top-1 md:top-[-6px] sb-large:top-0">
+                          <div class="flex flex-row gap-x-[2px] px-1 bg-black rounded text-white text-tiny desktop:text-xs sb-large:text-sm border border-[1px] border-[#493422] items-center w-fit mx-auto py-[1px]">
+                            <div class="absolute left-[14%] top-[22%] sb-large:left-[14%] flex flex-col text-left" style="color: rgb(89, 77, 44);">
+                              <div class="rounded-lg p-4 relative w-20 h-28 text-center">
+                                <p class="text-sm font-bold mb-2">ST</p>
+                                <button class="bg-green-500 w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-600">
+                                  +
+                                </button>
+                              </div>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+        
+                          </div>
+                  
+                  
+                </div>
+      
+              <!-- RW -->
+              <div class="col-start-6 flex justify-center -mt-16">
+                <div class="bg-gray-800 rounded-lg p-4 relative w-20 h-28 text-center">
+                  <p class="text-sm font-bold mb-2">RW</p>
+                  <button class="bg-green-500 w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-600">
+                    +
+                  </button>
+                </div>
+              </div>
+      
+              <!-- CM (3 joueurs centrés) -->
+              <div class="col-start-2 flex justify-center">
+                <div class="bg-gray-800 rounded-lg p-4 relative w-20 h-28 text-center">
+                  <p class="text-sm font-bold mb-2">CM</p>
+                  <button class="bg-green-500 w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-600">
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="col-start-4 flex justify-center">
+                <div class="bg-gray-800 rounded-lg p-4 relative w-20 h-28 text-center">
+                  <p class="text-sm font-bold mb-2">CM</p>
+                  <button class="bg-green-500 w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-600">
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="col-start-6 flex justify-center">
+                <div class="bg-gray-800 rounded-lg p-4 relative w-20 h-28 text-center">
+                  <p class="text-sm font-bold mb-2">CM</p>
+                  <button class="bg-green-500 w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-600">
+                    +
+                  </button>
+                </div>
+              </div>
+      
+              <!-- Défenseurs -->
+              <div class="col-start-1 flex justify-center mt-10">
+                <div class="bg-gray-800 rounded-lg p-4 relative w-20 h-28 text-center">
+                  <p class="text-sm font-bold mb-2">LB</p>
+                  <button class="bg-green-500 w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-600">
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="col-start-3 flex justify-center mt-6">
+                <div class="bg-gray-800 rounded-lg p-4 relative w-20 h-28 text-center">
+                  <p class="text-sm font-bold mb-2">CB</p>
+                  <button class="bg-green-500 w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-600">
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="col-start-5 flex justify-center mt-6">
+                <div class="bg-gray-800 rounded-lg p-4 relative w-20 h-28 text-center">
+                  <p class="text-sm font-bold mb-2">CB</p>
+                  <button class="bg-green-500 w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-600">
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="col-start-6 flex justify-center mt-10">
+                <div class="bg-gray-800 rounded-lg p-4 relative w-20 h-28 text-center">
+                  <p class="text-sm font-bold mb-2">RB</p>
+                  <button class="bg-green-500 w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-600">
+                    +
+                  </button>
+                </div>
+              </div>
+      
+              <!-- Gardien -->
+              <div class="col-start-4 flex justify-center mt-16">
+                <div class="bg-gray-800 rounded-lg p-4 relative w-20 h-28 text-center">
+                  <p class="text-sm font-bold mb-2">GK</p>
+                  <button class="bg-green-500 w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-600">
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
         </div>
           
-        <div class="bg-gray-900 text-white p-6 rounded-lg shadow-md w-80">
+        <div class="bg-gray-900 text-white p-6 rounded-lg shadow-md w-80  md:hidden">
             <!-- Create Squad -->
             <div class="mb-6">
               <label for="squad-name" class="block text-sm font-medium">Create Squad</label>
