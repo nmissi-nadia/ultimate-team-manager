@@ -40,8 +40,12 @@
       <!-- Contenu Principal -->
     <main class="p-6" >
     <!-- Section Formulaire -->
-    <section class="bg-gray-800 p-6 rounded-lg mb-6 hidden">
-      <h2 class="text-2xl font-semibold mb-4">Ajouter un joueur</h2>
+    <!-- Modal -->
+    <div id="modal" class="absolute bg-gray-800 p-6 rounded-lg hidden shadow-lg z-10">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl font-semibold">Ajouter un joueur</h2>
+        <button id="close-modal-btn" class="text-white text-lg">&times;</button>
+      </div>
       <form id="add-player-form" class="space-y-4">
         <div>
           <label for="player-name" class="block mb-2 text-sm">Nom du joueur</label>
@@ -66,334 +70,17 @@
         </div>
         <button type="submit" class="bg-green-500 px-4 py-2 rounded-lg text-white hover:bg-green-600">Ajouter le joueur</button>
       </form>
-    </section>
-
+    </div>
+    
+<h2 class="text-2xl font-semibold mb-4">Équipe</h2>
     <!-- Section Équipe -->
-     <section class="grid grid-cols-4 gap-4">
-        <div class="bg-gray-800 p-6 rounded-lg col-span-4 shadow-lg relative max-w-5xl grid grid-cols-7 gap-4 ml-6 md:col-span-3"  id="main">
-          <!-- Manager -->
-          <div class="-ml-5 col-span-1 flex justify-center mb-10">
-            <div class="mx-auto mt-10 md:mb-[-30px] tablet:mt-16 scale-[1.5] tablet:scale-[1.8] sb-large:scale-[1.5]">
-              <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
-                <div class="w-full flex absolute top-1 md:top-[-6px] sb-large:top-0">
-                  <div class="flex flex-row gap-x-[2px] px-1 bg-black rounded text-white text-tiny desktop:text-xs sb-large:text-sm border border-[1px] border-[#493422] items-center w-fit mx-auto py-[1px]">
-                    <div class="absolute left-[14%] top-[22%] sb-large:left-[14%] flex flex-col text-left" style="color: rgb(89, 77, 44);">
-                      <div class="rounded-lg p-4 pl-1 pt-6 relative w-20 h-28 ">
-                        <p class="text-sm font-bold mb-2">Manager</p>
-                        <button class="bg-green-700 w-10 h-7 rounded-lg flex items-center justify-center hover:bg-green-600">
-                          +
-                        </button>
-                      </div>
-                    </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-            
-            <h2 class="text-2xl font-semibold mb-4">Équipe</h2>
-            
-            <!-- <div class="relative w-[100px] h-[161px] bg-cover bg-center" style="background-image: url('https://selimdoyranli.com/cdn/fut-player-card/img/card_bg.png');">
-              Player Card Top
-              <div class="flex px-2 text-[#e9cc74]">
-                <div class="absolute text-[6px] uppercase leading-[10px]">
-                  <div class="text-[8px]">97</div>
-                  <div class="text-[6px]">RW</div>
-                  <div class="w-3 h-2 mt-1">
-                    <img class="w-full h-full object-contain" src="https://selimdoyranli.com/cdn/fut-player-card/img/argentina.svg" alt="Argentina">
-                  </div>
-                  <div class="w-3 h-4 mt-1">
-                    <img class="w-full h-full object-contain" src="https://selimdoyranli.com/cdn/fut-player-card/img/barcelona.svg" alt="Barcelona">
-                  </div>
-                </div>
-                <div class="relative w-16 h-16 mx-auto">
-                  <img class="object-contain" src="https://selimdoyranli.com/cdn/fut-player-card/img/messi.png" alt="Messi">
-                  <div class="absolute bottom-0 right-0 text-[4px] font-bold text-right uppercase">
-                    <span class="ml-1">4*SM</span>
-                    <span class="ml-1">4*WF</span>
-                  </div>
-                </div>
-              </div>
-            
-              Player Card Bottom
-              <div class="relative w-4/5 mx-auto text-[#e9cc74]">
-                Player Name
-                <div class="border-b border-[#e9cc74]/10 pb-[2px] text-center uppercase text-[6px]">
-                  <span class="block">Messi</span>
-                </div>
-                Player Features
-                <div class="flex justify-center mt-1">
-                  <div class="px-2 border-r border-[#e9cc74]/10">
-                    <div class="flex text-[5px] uppercase">
-                      <span class="font-bold mr-[1px]">97</span>
-                      <span>PAC</span>
-                    </div>
-                    <div class="flex text-[5px] uppercase">
-                      <span class="font-bold mr-[1px]">95</span>
-                      <span>SHO</span>
-                    </div>
-                    <div class="flex text-[5px] uppercase">
-                      <span class="font-bold mr-[1px]">94</span>
-                      <span>PAS</span>
-                    </div>
-                  </div>
-                  <div class="px-2">
-                    <div class="flex text-[5px] uppercase">
-                      <span class="font-bold mr-[1px]">99</span>
-                      <span>DRI</span>
-                    </div>
-                    <div class="flex text-[5px] uppercase">
-                      <span class="font-bold mr-[1px]">35</span>
-                      <span>DEF</span>
-                    </div>
-                    <div class="flex text-[5px] uppercase">
-                      <span class="font-bold mr-[1px]">68</span>
-                      <span>PHY</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <p class="mt-4 text-gray-400">Chimie Totale : <span id="total-chemistry" class="text-green-400">0</span>/100</p> -->
-            <div id="player-cards-container" class="grid grid-cols-6 gap-4 relative col-span-6">
+     <section class="grid grid-cols-1 gap-4">
+      
+        <div  class="bg-gray-800 ml-6 p-6 rounded-lg shadow-lg max-w-5xl grid grid-rows-4 grid-cols-5 col-span-1 mt-16 h-screen gap-4 relative md:col-span-3"  id="main">
+          
+  
               
-      
-              <!-- LW -->
-              <!-- <div class="col-start-1 flex justify-center -mt-16 -mr-10">
-                <div class="ml-40 col-span-1 flex justify-center mb-10">
-                  
-                    <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
-                      <div class="w-full flex absolute top-1 md:top-[-6px] sb-large:top-0">
-                        <div class="flex flex-row gap-x-[2px] px-1 bg-black rounded text-white text-tiny desktop:text-xs sb-large:text-sm border border-[1px] border-[#493422] items-center w-fit mx-auto py-[1px]">
-                          <div class="absolute left-[14%] top-[22%] sb-large:left-[14%] flex flex-col text-left" style="color: rgb(89, 77, 44);">
-                            <div class="rounded-lg p-4 relative w-20 h-28 text-center">
-                              <p class="text-sm font-bold mb-2">LW</p>
-                              <button class="bg-green-600 w-10 h-7 rounded-lg flex items-center justify-center hover:bg-green-600">
-                                +
-                              </button>
-                            </div>
-                          </div>
-                          </div>
-                        </div>
-                      </div>
-      
-                </div>
-              </div> -->
-      
-              <!-- ST -->
-              
-                <!-- <div class="col-start-3 col-end-5 flex justify-center -mt-32">
-                  <div class="-ml-5 col-span-1 flex justify-center mb-10">
-                    
-                      <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
-                        <div class="w-full flex absolute top-1 md:top-[-6px] sb-large:top-0">
-                          <div class="flex flex-row gap-x-[2px] px-1 bg-black rounded text-white text-tiny desktop:text-xs sb-large:text-sm border border-[1px] border-[#493422] items-center w-fit mx-auto py-[1px]">
-                            <div class="absolute left-[14%] top-[22%] sb-large:left-[14%] flex flex-col text-left" style="color: rgb(89, 77, 44);">
-                              <div class="rounded-lg p-4 relative w-20 h-28 text-center">
-                                <p class="text-sm font-bold mb-2">ST</p>
-                                <button class="bg-green-500 w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-600">
-                                  +
-                                </button>
-                              </div>
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-        
-                          </div>
-                  
-                  
-                </div> -->
-      
-              <!-- RW -->
-              <!-- <div class="col-start-6 flex justify-center -mt-16">
-                <div class="ml-40 col-span-1 flex justify-center mb-10">
-                  
-                  <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
-                    <div class="w-full flex absolute top-1 md:top-[-6px] sb-large:top-0">
-                      <div class="flex flex-row gap-x-[2px] px-1 bg-black rounded text-white text-tiny desktop:text-xs sb-large:text-sm border border-[1px] border-[#493422] items-center w-fit mx-auto py-[1px]">
-                        <div class="absolute left-[14%] top-[22%] sb-large:left-[14%] flex flex-col text-left" style="color: rgb(89, 77, 44);">
-                          <div class="rounded-lg p-4 relative w-20 h-28 text-center">
-                            <p class="text-sm font-bold mb-2">RW</p>
-                            <button class="bg-green-600 w-10 h-7 rounded-lg flex items-center justify-center hover:bg-green-600">
-                              +
-                            </button>
-                          </div>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-    
-              </div>
-              </div> -->
-      
-              <!-- CM (3 joueurs centrés) -->
-              <!-- <div class="col-start-2 flex justify-center">
-                <div class="ml-40 col-span-1 flex justify-center mb-10">
-                  
-                  <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
-                    <div class="w-full flex absolute top-1 md:top-[-6px] sb-large:top-0">
-                      <div class="flex flex-row gap-x-[2px] px-1 bg-black rounded text-white text-tiny desktop:text-xs sb-large:text-sm border border-[1px] border-[#493422] items-center w-fit mx-auto py-[1px]">
-                        <div class="absolute left-[14%] top-[22%] sb-large:left-[14%] flex flex-col text-left" style="color: rgb(89, 77, 44);">
-                          <div class="rounded-lg p-4 relative w-20 h-28 text-center">
-                            <p class="text-sm font-bold mb-2">CM</p>
-                            <button class="bg-green-600 w-10 h-7 rounded-lg flex items-center justify-center hover:bg-green-600">
-                              +
-                            </button>
-                          </div>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-    
-              </div>
-              </div>
-              <div class="col-start-4 flex justify-center">
-                <div class="ml-40 col-span-1 flex justify-center mb-10">
-                  
-                  <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
-                    <div class="w-full flex absolute top-1 md:top-[-6px] sb-large:top-0">
-                      <div class="flex flex-row gap-x-[2px] px-1 bg-black rounded text-white text-tiny desktop:text-xs sb-large:text-sm border border-[1px] border-[#493422] items-center w-fit mx-auto py-[1px]">
-                        <div class="absolute left-[14%] top-[22%] sb-large:left-[14%] flex flex-col text-left" style="color: rgb(89, 77, 44);">
-                          <div class="rounded-lg p-4 relative w-20 h-28 text-center">
-                            <p class="text-sm font-bold mb-2">CM</p>
-                            <button class="bg-green-600 w-10 h-7 rounded-lg flex items-center justify-center hover:bg-green-600">
-                              +
-                            </button>
-                          </div>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-    
-              </div>
-              </div>
-              <div class="col-start-6 flex justify-center">
-                <div class="ml-40 col-span-1 flex justify-center mb-10">
-                  
-                  <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
-                    <div class="w-full flex absolute top-1 md:top-[-6px] sb-large:top-0">
-                      <div class="flex flex-row gap-x-[2px] px-1 bg-black rounded text-white text-tiny desktop:text-xs sb-large:text-sm border border-[1px] border-[#493422] items-center w-fit mx-auto py-[1px]">
-                        <div class="absolute left-[14%] top-[22%] sb-large:left-[14%] flex flex-col text-left" style="color: rgb(89, 77, 44);">
-                          <div class="rounded-lg p-4 relative w-20 h-28 text-center">
-                            <p class="text-sm font-bold mb-2">CM</p>
-                            <button class="bg-green-600 w-10 h-7 rounded-lg flex items-center justify-center hover:bg-green-600">
-                              +
-                            </button>
-                          </div>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-    
-              </div>
-              </div> -->
-      
-              <!-- Défenseurs -->
-              <!-- <div class="col-start-1 flex justify-center mt-10">
-                <div class="ml-40 col-span-1 flex justify-center mb-10">
-                  
-                  <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
-                    <div class="w-full flex absolute top-1 md:top-[-6px] sb-large:top-0">
-                      <div class="flex flex-row gap-x-[2px] px-1 bg-black rounded text-white text-tiny desktop:text-xs sb-large:text-sm border border-[1px] border-[#493422] items-center w-fit mx-auto py-[1px]">
-                        <div class="absolute left-[14%] top-[22%] sb-large:left-[14%] flex flex-col text-left" style="color: rgb(89, 77, 44);">
-                          <div class="rounded-lg p-4 relative w-20 h-28 text-center">
-                            <p class="text-sm font-bold mb-2">LB</p>
-                            <button class="bg-green-600 w-10 h-7 rounded-lg flex items-center justify-center hover:bg-green-600">
-                              +
-                            </button>
-                          </div>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-    
-              </div>
-              </div>
-              <div class="col-start-3 flex justify-center mt-6">
-                <div class="ml-40 col-span-1 flex justify-center mb-10">
-                  
-                  <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
-                    <div class="w-full flex absolute top-1 md:top-[-6px] sb-large:top-0">
-                      <div class="flex flex-row gap-x-[2px] px-1 bg-black rounded text-white text-tiny desktop:text-xs sb-large:text-sm border border-[1px] border-[#493422] items-center w-fit mx-auto py-[1px]">
-                        <div class="absolute left-[14%] top-[22%] sb-large:left-[14%] flex flex-col text-left" style="color: rgb(89, 77, 44);">
-                          <div class="rounded-lg p-4 relative w-20 h-28 text-center">
-                            <p class="text-sm font-bold mb-2">CB</p>
-                            <button class="bg-green-600 w-10 h-7 rounded-lg flex items-center justify-center hover:bg-green-600">
-                              +
-                            </button>
-                          </div>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-    
-              </div>
-              </div>
-              <div class="col-start-5 flex justify-center mt-6">
-                <div class="ml-40 col-span-1 flex justify-center mb-10">
-                  
-                  <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
-                    <div class="w-full flex absolute top-1 md:top-[-6px] sb-large:top-0">
-                      <div class="flex flex-row gap-x-[2px] px-1 bg-black rounded text-white text-tiny desktop:text-xs sb-large:text-sm border border-[1px] border-[#493422] items-center w-fit mx-auto py-[1px]">
-                        <div class="absolute left-[14%] top-[22%] sb-large:left-[14%] flex flex-col text-left" style="color: rgb(89, 77, 44);">
-                          <div class="rounded-lg p-4 relative w-20 h-28 text-center">
-                            <p class="text-sm font-bold mb-2">CB</p>
-                            <button class="bg-green-600 w-10 h-7 rounded-lg flex items-center justify-center hover:bg-green-600">
-                              +
-                            </button>
-                          </div>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-    
-              </div>
-              </div>
-              <div class="col-start-6 flex justify-center mt-10">
-                <div class="ml-40 col-span-1 flex justify-center mb-10">
-                  
-                  <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
-                    <div class="w-full flex absolute top-1 md:top-[-6px] sb-large:top-0">
-                      <div class="flex flex-row gap-x-[2px] px-1 bg-black rounded text-white text-tiny desktop:text-xs sb-large:text-sm border border-[1px] border-[#493422] items-center w-fit mx-auto py-[1px]">
-                        <div class="absolute left-[14%] top-[22%] sb-large:left-[14%] flex flex-col text-left" style="color: rgb(89, 77, 44);">
-                          <div class="rounded-lg p-4 relative w-20 h-28 text-center">
-                            <p class="text-sm font-bold mb-2">RB</p>
-                            <button class="bg-green-600 w-10 h-7 rounded-lg flex items-center justify-center hover:bg-green-600">
-                              +
-                            </button>
-                          </div>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-    
-              </div>
-              </div> -->
-      
-              <!-- Gardien -->
-              <!-- <div class="col-start-4 flex justify-center mt">
-                <div class="col-span-1 flex justify-center mb-1">
-                  
-                  <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
-                    <div class="w-full flex absolute top-1 md:top-[-6px] sb-large:top-0">
-                      <div class="flex flex-row gap-x-[2px] px-1 bg-black rounded text-white text-tiny desktop:text-xs sb-large:text-sm border border-[1px] border-[#493422] items-center w-fit mx-auto py-[1px]">
-                        <div class="absolute left-[14%] top-[22%] sb-large:left-[14%] flex flex-col text-left" style="color: rgb(89, 77, 44);">
-                          <div class="rounded-lg p-4 relative w-20 h-28 text-center">
-                            <p class="text-sm font-bold mb-2">GK</p>
-                            <button class="bg-green-600 w-10 h-7 rounded-lg flex items-center justify-center hover:bg-green-600">
-                              +
-                            </button>
-                          </div>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-    
-              </div>
-              </div> -->
-            </div>
+   
         </div>
           
         <div class="bg-gray-900 text-white p-6 rounded-lg shadow-md w-80 hidden  md:block">
@@ -479,30 +166,77 @@
               </div>
             </div>
         </div>
-        <div class="grid grid-cols-2 col-span-4 sm:grid-cols-3 lg:grid-cols-5 gap-4 bg-gray-800 p-4 rounded-lg">
+        <div class="grid grid-cols-5 col-span-4 sm:grid-cols-3 lg:grid-cols-5 gap-4 bg-gray-800 p-4 rounded-lg">
             <!-- Reserve Player Card 1 -->
-            <div class="relative w-[100px] h-[160px] bg-cover bg-center" style="background-image: url('https://selimdoyranli.com/cdn/fut-player-card/img/card_bg.png');">
-              <div class="absolute top-2 left-2 text-xs text-yellow-400">
-                <div class="font-bold text-sm">85</div>
-                <div class="uppercase">CB</div>
+             <!-- Manager -->
+          <div class="ml-5 col-span-1 flex justify-center mb-10 mx-auto mt-10 md:mb-[-30px] tablet:mt-16 scale-[1.5] tablet:scale-[1.8] sb-large:scale-[1.5]">
+            <!-- <div class="mx-auto mt-10 md:mb-[-30px] tablet:mt-16 scale-[1.5] tablet:scale-[1.8] sb-large:scale-[1.5]"> -->
+              <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
+                <div class="w-full flex absolute top-1 md:top-[-6px] sb-large:top-0">
+                  <!-- <div class="flex flex-row gap-x-[2px] px-1 bg-black rounded text-white text-tiny desktop:text-xs sb-large:text-sm border border-[1px] border-[#493422] items-center w-fit mx-auto py-[1px]"> -->
+                    <div class="absolute left-[14%] top-[22%] sb-large:left-[14%] flex flex-col text-left" style="color: rgb(89, 77, 44);">
+                      <div class="rounded-lg p-4 pl-1 pt-6 relative w-20 h-28 ">
+                        <p class="text-sm font-bold mb-2">Manager</p>
+                        <button  id="open-modal-btn" class="bg-green-700 w-10 h-7 rounded-lg flex items-center justify-center hover:bg-green-600">
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+                </div>
+              <!-- </div> -->
+          </div>
+            
+
+          <div class="ml-5 flex justify-center mb-10 md:mb-[-30px] tablet:mt-16 scale-[1.5] tablet:scale-[1.8] sb-large:scale-[1.5]">
+            
+              <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
+                
+                  
+                    <div class="absolute left-[14%] top-[22%] sb-large:left-[14%] flex flex-col text-left" style="color: rgb(89, 77, 44);">
+                      <div class="rounded-lg p-4 pt-7 relative w-20 h-28 ">
+                        <div class="absolute top-2 left-2 text-xs text-yellow-400">
+                          <div class="font-bold text-sm">85</div>
+                          <div class="uppercase">CB</div>
+                        </div>
+                        <div class="absolute bottom-2 left-2 text-white text-xs uppercase">
+                          <span>Player 1</span>
+                        </div>
+                        <button  id="open-modal-btn" class="bg-green-700 w-10 h-7 rounded-lg flex items-center justify-center hover:bg-green-600">
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    </div>
+                
               </div>
-              <div class="absolute bottom-2 left-2 text-white text-xs uppercase">
-                <span>Player 1</span>
-              </div>
-              <img class="absolute bottom-6 right-2 w-10 h-10 object-cover" src="https://selimdoyranli.com/cdn/fut-player-card/img/argentina.svg" alt="Nation">
-            </div>
+          
+              
           
             <!-- Reserve Player Card 2 -->
-            <div class="relative w-[100px] h-[160px] bg-cover bg-center" style="background-image: url('https://selimdoyranli.com/cdn/fut-player-card/img/card_bg.png');">
-              <div class="absolute top-2 left-2 text-xs text-yellow-400">
-                <div class="font-bold text-sm">78</div>
-                <div class="uppercase">CM</div>
+            <div class="-ml-5 col-span-1 flex justify-center mb-10 md:mb-[-30px] tablet:mt-16 scale-[1.5] tablet:scale-[1.8] sb-large:scale-[1.5]">
+            
+              <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
+                
+                  
+                    <div class="absolute left-[14%] top-[22%] sb-large:left-[14%] flex flex-col text-left" style="color: rgb(89, 77, 44);">
+                      <div class="rounded-lg p-4 pt-7 relative w-20 h-28 ">
+                        <div class="absolute top-2 left-2 text-xs text-yellow-400">
+                          <div class="font-bold text-sm">85</div>
+                          <div class="uppercase">CB</div>
+                        </div>
+                        <div class="absolute bottom-2 left-2 text-white text-xs uppercase">
+                          <span>Player 2</span>
+                        </div>
+                        <button  id="open-modal-btn" class="bg-green-700 w-10 h-7 rounded-lg flex items-center justify-center hover:bg-green-600">
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    </div>
+                
               </div>
-              <div class="absolute bottom-2 left-2 text-white text-xs uppercase">
-                <span>Player 2</span>
-              </div>
-              <img class="absolute bottom-6 right-2 w-10 h-10 object-cover" src="https://selimdoyranli.com/cdn/fut-player-card/img/barcelona.svg" alt="Nation">
-            </div>
           
             <!-- Add more reserve player cards here -->
           </div>
