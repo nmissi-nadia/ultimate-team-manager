@@ -3,7 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const menu = document.getElementById("menu");
   const navbar = document.getElementById("navbar");
   const menuLinks = document.querySelectorAll(".nav-link");
+  const maxPlayers = 23;
+  const maxByPosition = { GK: 2, CB: 3, CM: 3, RM: 3, LM: 3, LB: 3, RB: 3 };
+  const equipe = document.getElementById("info");
+  const btn_ajout =document.getElementById('add_joueur');
 
+  let currentCardId = null;
+  let players = JSON.parse(localStorage.getItem("players")) || [];
   // Toggle menu visibility for mobile
   menuToggle.addEventListener("click", () => {
     menu.classList.toggle("hidden");
@@ -103,7 +109,7 @@ function calculateColumns(playerCount) {
 function createPlayerCard(position, row, column) {
   const playerCard = document.createElement("div");
   playerCard.id = position; // Utiliser la position comme identifiant
-  playerCard.className = "card mx-auto bg-transparent p-4 rounded-lg shadow-md relative";
+  playerCard.className = "card mx-auto bg-transparent p-4 rounded-lg shadow-md relative z-2";
 
   playerCard.innerHTML = `
     <div class="relative w-22 h-[170px] bg-[url('https://cdn.easysbc.io/fc25/cards/e_7_0.png')] bg-center bg-cover bg-no-repeat py-3 z-10 transition ease-in duration-200 sm:w-12 sm:h-[90px] md:w-20 md:h-[140px] lg:w-24 lg:h-[150px]">
@@ -135,40 +141,10 @@ function createPlayerCard(position, row, column) {
       <div class="block text-center text-[6px] uppercase border-b border-opacity-10 border-[#e9cc74] pb-[1px] sm:text-[5px] md:text-[6px] lg:text-[7px]">
         <span class="block">MESSI</span>
       </div>
-      <!-- Player Features -->
-      <div class="flex justify-center mt-[1px] sm:mt-[0.5px] md:mt-[1px] lg:mt-[1.5px]">
-        <div class="pr-2 border-r border-opacity-10 border-[#e9cc74] sm:pr-1.5 md:pr-2 lg:pr-2.5">
-          <span class="flex text-[6px] uppercase sm:text-[5px] md:text-[6px] lg:text-[7px]">
-            <div class="font-bold mr-[1px]">97</div>
-            <div class="font-light">PAC</div>
-          </span>
-          <span class="flex text-[6px] uppercase sm:text-[5px] md:text-[6px] lg:text-[7px]">
-            <div class="font-bold mr-[1px]">95</div>
-            <div class="font-light">SHO</div>
-          </span>
-          <span class="flex text-[6px] uppercase sm:text-[5px] md:text-[6px] lg:text-[7px]">
-            <div class="font-bold mr-[1px]">94</div>
-            <div class="font-light">PAS</div>
-          </span>
-        </div>
-        <div class="pl-2 sm:pl-1.5 md:pl-2 lg:pl-2.5">
-          <span class="flex text-[6px] uppercase sm:text-[5px] md:text-[6px] lg:text-[7px]">
-            <div class="font-bold mr-[1px]">99</div>
-            <div class="font-light">DRI</div>
-          </span>
-          <span class="flex text-[6px] uppercase sm:text-[5px] md:text-[6px] lg:text-[7px]">
-            <div class="font-bold mr-[1px]">35</div>
-            <div class="font-light">DEF</div>
-          </span>
-          <span class="flex text-[6px] uppercase sm:text-[5px] md:text-[6px] lg:text-[7px]">
-            <div class="font-bold mr-[1px]">68</div>
-            <div class="font-light">PHY</div>
-          </span>
-        </div>
+      <button class="edit-button "></button>
         
       </div>
-      <button id="open-modal-btn" class="bg-green-800 w-4 h-4 rounded flex items-center justify-center hover:bg-green-600">+</button>
-      <button class="edit-button bg-green-800 w-10 h-5  rounded flex items-center text-4 justify-center">Modifié</button>
+      
     </div>
   </div>
 </div>
@@ -188,7 +164,7 @@ function createPlayerCard(position, row, column) {
 
   // Événement pour ouvrir le modal
   playerCard.querySelector(".edit-button").addEventListener("click", (e) => {
-    openModalAboveButton(e.target);
+    
   });
 }
 
@@ -293,3 +269,64 @@ document.getElementById("player-form").addEventListener("submit", (event) => {
 
   document.getElementById("modal").classList.add("hidden");
 });
+
+
+
+
+// ------------partie de clique buton affiche
+btn_ajout.addEventListener("click", (e) => {
+  if (e.target.closest("btn_ajout")) {
+    currentCardId = e.target.closest(".card").id;
+    modal.classList.remove("hidden");
+  }
+});
+
+// modal une autre fois pour ajouté les  joiueurs
+// Ajouter un joueur via le formulaire
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const name = document.getElementById("player-name").value;
+  const position = document.getElementById("player-position").value;
+  const rating = document.getElementById("player-rating").value;
+  const stats = {
+    pace: document.getElementById("pace").value,
+    shooting: document.getElementById("shooting").value,
+    passing: document.getElementById("passing").value,
+    dribbling: document.getElementById("dribbling").value,
+    defending: document.getElementById("defending").value,
+    physical: document.getElementById("physical").value,
+  };
+
+  // Vérifier les limites de joueurs
+  const positionCount = players.filter((p) => p.position === position).length;
+  if (players.length >= maxPlayers || positionCount >= maxByPosition[position]) {
+    alert("Limite atteinte pour cette position ou le total des joueurs !");
+    return;
+  }
+
+  // Ajouter le joueur
+  const playerData = { id: currentCardId, name, position, rating, stats };
+  players = players.filter((p) => p.id !== currentCardId); // Supprimer les doublons
+  players.push(playerData);
+  localStorage.setItem("players", JSON.stringify(players));
+
+  updateCard(currentCardId, playerData);
+  updateReservedList();
+
+  modal.classList.add("hidden");
+});
+
+// Mettre à jour une carte
+function updateCard(cardId, player) {
+  const card = document.getElementById(cardId);
+  if (card) {
+    card.querySelector(".card-title").textContent = player.name;
+    card.querySelector(".card-rating").textContent = `Rating: ${player.rating}`;
+    card.querySelector(".card-stats").textContent = `
+      PAC: ${player.stats.pace}, SHO: ${player.stats.shooting}, PAS: ${player.stats.passing},
+      DRI: ${player.stats.dribbling}, DEF: ${player.stats.defending}, PHY: ${player.stats.physical}
+    `;
+  }
+}
+
