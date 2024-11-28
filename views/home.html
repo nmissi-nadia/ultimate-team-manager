@@ -15,13 +15,13 @@
     <header class="bg-gray-800 p-4 flex justify-between items-center">
         <!-- <h1 class="text-xl font-bold">EA FC 24 Squad Builder</h1> -->
         <nav id="navbar" class="bg-gray-900 text-white w-full fixed top-0 z-10 shadow-lg">
-          <div class="container mx-auto flex justify-between items-center py-4 px-6">
+          <div class="container mx-auto flex w-full justify-between items-center py-4 px-6">
             <!-- Logo -->
             <a href="#" class="text-2xl font-bold text-yellow-400 hover:text-yellow-300">Ultimate Team</a>
         
             <!-- Hamburger Menu (pour mobile) -->
             <button id="menu-toggle" class="block md:hidden text-3xl text-white focus:outline-none">
-              ☰
+              <i class="fa-solid fa-bars"></i>
             </button>
         
             <!-- Menu Links -->
@@ -38,22 +38,30 @@
       </header>
     
       <!-- Contenu Principal -->
-    <main class="p-6" >
+    <main class="p-1 justify-center flex  " >
     <!-- Section Formulaire -->
     <!-- Modal -->
     <div id="modal" class="absolute bg-gray-800 p-6 rounded-lg hidden shadow-lg z-10">
       <div class="flex justify-between items-center mb-4">
-        <h2 class="text-2xl font-semibold">Ajouter un joueur</h2>
+        <h2 class="text-2xl font-semibold text-white">Ajouter un joueur</h2>
         <button id="close-modal-btn" class="text-white text-lg">&times;</button>
       </div>
       <form id="add-player-form" class="space-y-4">
         <div>
-          <label for="player-name" class="block mb-2 text-sm">Nom du joueur</label>
-          <input type="text" id="player-name" class="w-full p-2 rounded-lg bg-gray-700 text-white" placeholder="Entrez le nom">
+          <label for="player-name" class="block mb-2 text-sm text-gray-300">Nom du joueur</label>
+          <input 
+            type="text" 
+            id="player-name" 
+            class="w-full p-2 rounded-lg bg-gray-700 text-white" 
+            placeholder="Entrez le nom"
+            required>
         </div>
         <div>
-          <label for="player-position" class="block mb-2 text-sm">Position</label>
-          <select id="player-position" class="w-full p-2 rounded-lg bg-gray-700 text-white">
+          <label for="player-position" class="block mb-2 text-sm text-gray-300">Position</label>
+          <select 
+            id="player-position" 
+            class="w-full p-2 rounded-lg bg-gray-700 text-white"
+            required>
             <option value="GK">Gardien (GK)</option>
             <option value="CB">Défenseur Central (CB)</option>
             <option value="LB">Latéral Gauche (LB)</option>
@@ -65,25 +73,122 @@
           </select>
         </div>
         <div>
-          <label for="player-rating" class="block mb-2 text-sm">Note</label>
-          <input type="number" id="player-rating" class="w-full p-2 rounded-lg bg-gray-700 text-white" placeholder="Exemple : 85" min="1" max="99">
+          <label for="player-position" class="block mb-2 text-sm text-gray-300">Position</label>
+          <select 
+            id="player-image" 
+            class="w-full p-2 rounded-lg bg-gray-700 text-white"
+            required>
+            <option value="GK">Messi</option>
+            <option value="CB">HAKIMI</option>
+            <option value="LB">Belingham</option>
+            <option value="RB">Benzima</option>
+            <option value="CM">Milieu Central (CM)</option>
+            <option value="LW">Ailier Gauche (LW)</option>
+            <option value="RW">Ailier Droit (RW)</option>
+            <option value="ST">Attaquant (ST)</option>
+          </select>
         </div>
-        <button type="submit" class="bg-green-500 px-4 py-2 rounded-lg text-white hover:bg-green-600">Ajouter le joueur</button>
+        <div>
+          <label for="player-rating" class="block mb-2 text-sm text-gray-300">Note</label>
+          <input 
+            type="number" 
+            id="player-rating" 
+            class="w-full p-2 rounded-lg bg-gray-700 text-white" 
+            placeholder="Exemple : 85" 
+            min="1" 
+            max="99"
+            required>
+        </div>
+        <div>
+          <label for="player-statistics" class="block mb-2 text-sm text-gray-300">Statistiques</label>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="pace" class="block mb-1 text-sm text-gray-300">Pace</label>
+              <input 
+                type="number" 
+                id="pace" 
+                class="w-full p-2 rounded-lg bg-gray-700 text-white" 
+                placeholder="0-100" 
+                min="0" 
+                max="100"
+                required>
+            </div>
+            <div>
+              <label for="shooting" class="block mb-1 text-sm text-gray-300">Shooting</label>
+              <input 
+                type="number" 
+                id="shooting" 
+                class="w-full p-2 rounded-lg bg-gray-700 text-white" 
+                placeholder="0-100" 
+                min="0" 
+                max="100"
+                required>
+            </div>
+            <div>
+              <label for="passing" class="block mb-1 text-sm text-gray-300">Passing</label>
+              <input 
+                type="number" 
+                id="passing" 
+                class="w-full p-2 rounded-lg bg-gray-700 text-white" 
+                placeholder="0-100" 
+                min="0" 
+                max="100"
+                required>
+            </div>
+            <div>
+              <label for="dribbling" class="block mb-1 text-sm text-gray-300">Dribbling</label>
+              <input 
+                type="number" 
+                id="dribbling" 
+                class="w-full p-2 rounded-lg bg-gray-700 text-white" 
+                placeholder="0-100" 
+                min="0" 
+                max="100"
+                required>
+            </div>
+            <div>
+              <label for="defending" class="block mb-1 text-sm text-gray-300">Defending</label>
+              <input 
+                type="number" 
+                id="defending" 
+                class="w-full p-2 rounded-lg bg-gray-700 text-white" 
+                placeholder="0-100" 
+                min="0" 
+                max="100"
+                required>
+            </div>
+            <div>
+              <label for="physical" class="block mb-1 text-sm text-gray-300">Physical</label>
+              <input 
+                type="number" 
+                id="physical" 
+                class="w-full p-2 rounded-lg bg-gray-700 text-white" 
+                placeholder="0-100" 
+                min="0" 
+                max="100"
+                required>
+            </div>
+          </div>
+        </div>
+        <button 
+          type="submit" 
+          class="bg-green-500 px-4 py-2 rounded-lg text-white hover:bg-green-600 w-full">
+          Ajouter le joueur
+        </button>
       </form>
     </div>
     
+    
 <h2 class="text-2xl font-semibold mb-4">Équipe</h2>
     <!-- Section Équipe -->
-     <section class="grid grid-cols-1 gap-4">
+     <section class="grid grid-cols-1 md:grid-cols-4 w-full gap-0 md:gap-4 w-full">
       
-        <div  class="bg-gray-800 ml-6 p-6 rounded-lg shadow-lg max-w-5xl grid grid-rows-4 grid-cols-5 col-span-1 mt-16 h-screen gap-4 relative md:col-span-3"  id="main">
+        <div  class="-ml-12 md:ml-0 bg-gray-800 lg:w-full  md:col-span-3  rounded-lg shadow-lg max-w-3xl grid grid-rows-4 grid-cols-5 col-span-1 mt-16 h-screen gap-4 relative"  id="main">
           
   
-              
-   
         </div>
           
-        <div class="bg-gray-900 text-white p-6 rounded-lg shadow-md w-80 hidden  md:block">
+        <div class="bg-gray-900 text-white p-6 rounded-lg shadow-md w-80 block col-span-4  md:block md:col-span-1 mb-10">
             <!-- Create Squad -->
             <div class="mb-6">
               <label for="squad-name" class="block text-sm font-medium">Create Squad</label>
@@ -102,11 +207,10 @@
               <label class="block text-sm font-medium mb-2">Squad Info</label>
               <div class="flex items-center justify-between mb-4">
                 <select id="formation-selector" class="bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
+                  <option value="" disabled selected>Choisir une formation</option>
                     <option value="4-4-2">4-4-2</option>
                     <option value="4-3-3">4-3-3</option>
-                    <option value="3-5-2">3-5-2</option>
-                
-                  <!-- Add more options here -->
+                    <option value="5-3-2">5-3-2</option>
                 </select>
                 <div class="flex items-center space-x-1 text-yellow-400">
                   <span>Squad Rating: 32</span>
@@ -166,10 +270,10 @@
               </div>
             </div>
         </div>
-        <div class="grid grid-cols-5 col-span-4 sm:grid-cols-3 lg:grid-cols-5 gap-4 bg-gray-800 p-4 rounded-lg">
+        <div class="grid col-span-4 sm:grid-cols-3 grid-cols-1 lg:grid-cols-5 h-[700px]  lg:h-[200px] gap-4 bg-gray-800 p-4 rounded-lg">
             <!-- Reserve Player Card 1 -->
              <!-- Manager -->
-          <div class="ml-5 col-span-1 flex justify-center mb-10 mx-auto mt-10 md:mb-[-30px] tablet:mt-16 scale-[1.5] tablet:scale-[1.8] sb-large:scale-[1.5]">
+          <div class="col-span-1 flex justify-center mb-10 mx-auto md:mb-[-30px] tablet:mt-16 scale-[1.5] tablet:scale-[1.8] sb-large:scale-[1.5]">
             <!-- <div class="mx-auto mt-10 md:mb-[-30px] tablet:mt-16 scale-[1.5] tablet:scale-[1.8] sb-large:scale-[1.5]"> -->
               <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
                 <div class="w-full flex absolute top-1 md:top-[-6px] sb-large:top-0">
@@ -189,7 +293,7 @@
           </div>
             
 
-          <div class="ml-5 flex justify-center mb-10 md:mb-[-30px] tablet:mt-16 scale-[1.5] tablet:scale-[1.8] sb-large:scale-[1.5]">
+          <div class="flex justify-center mb-10 md:mb-[-30px] tablet:mt-16 scale-[1.5] tablet:scale-[1.8] sb-large:scale-[1.5]">
             
               <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
                 
@@ -215,7 +319,7 @@
               
           
             <!-- Reserve Player Card 2 -->
-            <div class="-ml-5 col-span-1 flex justify-center mb-10 md:mb-[-30px] tablet:mt-16 scale-[1.5] tablet:scale-[1.8] sb-large:scale-[1.5]">
+            <div class="col-span-1 flex justify-center mb-10 md:mb-[-30px] tablet:mt-16 scale-[1.5] tablet:scale-[1.8] sb-large:scale-[1.5]">
             
               <div class="relative md:w-20 w-28 sb-large:w-36 text-[#412b18] "><img alt="type" src="https://cdn.easysbc.io/fc25/cards/e_7_0.png">
                 
