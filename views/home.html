@@ -41,149 +41,225 @@
     <main class="p-1 justify-center flex  " >
     <!-- Section Formulaire -->
     <!-- Modal -->
-    <div id="modal" class="absolute bg-gray-800 p-6 w-36 md:w-[700px] rounded-lg hidden shadow-lg z-20">
-      <div class="flex justify-between items-center mb-4">
-        <h2 class="text-2xl font-semibold text-white">Ajouter un joueur</h2>
-        <button id="close-modal-btn" class="text-white text-lg">&times;</button>
-      </div>
-      <form id="player-form" class="space-y-4">
-        <div>
-          <label for="player-name" class="block mb-2 text-sm text-gray-300">Nom du joueur</label>
-          <input 
-            type="text" 
-            id="player-name" 
-            class="w-full p-2 rounded-lg bg-gray-700 text-white" 
-            placeholder="Entrez le nom"
-            required>
-        </div>
-        <div>
-          <label for="player-position" class="block mb-2 text-sm text-gray-300">Position</label>
-          <select 
-            id="player-position" 
-            class="w-full p-2 rounded-lg bg-gray-700 text-white"
-            required>
-            <option value="GK">Gardien (GK)</option>
-            <option value="CB">Défenseur Central (CB)</option>
-            <option value="LB">Latéral Gauche (LB)</option>
-            <option value="RB">Latéral Droit (RB)</option>
-            <option value="CM">Milieu Central (CM)</option>
-            <option value="LW">Ailier Gauche (LW)</option>
-            <option value="RW">Ailier Droit (RW)</option>
-            <option value="ST">Attaquant (ST)</option>
-          </select>
-        </div>
-        <div>
-          <label for="player-position" class="block mb-2 text-sm text-gray-300">Position</label>
-          <select 
-            id="player-image" 
-            class="w-full p-2 rounded-lg bg-gray-700 text-white"
-            required>
-            <option value="GK">Messi</option>
-            <option value="CB">HAKIMI</option>
-            <option value="LB">Belingham</option>
-            <option value="RB">Benzima</option>
-            <option value="CM">Milieu Central (CM)</option>
-            <option value="LW">Ailier Gauche (LW)</option>
-            <option value="RW">Ailier Droit (RW)</option>
-            <option value="ST">Attaquant (ST)</option>
-          </select>
-        </div>
-        <div>
-          <label for="player-rating" class="block mb-2 text-sm text-gray-300">Note</label>
-          <input 
-            type="number" 
-            id="player-rating" 
-            class="w-full p-2 rounded-lg bg-gray-700 text-white" 
-            placeholder="Exemple : 85" 
-            min="1" 
-            max="99"
-            required>
-        </div>
-        <div>
-          <label for="player-statistics" class="block mb-2 text-sm text-gray-300">Statistiques</label>
-          <div class="grid grid-cols-2 gap-4">
+    
+    <div id="pop_up_ajoute"
+      class="absolute  top-[0] z-20 left-1/2 transform -translate-x-1/2 bg-gray-800 flex justify-center items-center p-4 sm:p-6 md:p-8 w-[90%] max-w-[600px]">
+      <div class="bg-gray-900 shadow-2xl rounded-lg w-full relative p-6 sm:p-8">
+        <button id="closeButton"
+          class="absolute top-4 right-4 text-white text-2xl sm:text-4xl w-8 sm:w-10 h-8 sm:h-10 flex items-center justify-center bg-red-500 rounded-full hover:bg-red-600 transition-colors duration-300">
+          &times;
+        </button>
+
+        <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center text-white">Ajouter une Carte de Joueur</h2>
+
+        <form id="playerForm" class="space-y-4 sm:space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             <div>
-              <label for="pace" class="block mb-1 text-sm text-gray-300">Pace</label>
-              <input 
-                type="number" id="pace" class="w-full p-2 rounded-lg bg-gray-700 text-white" placeholder="0-100" min="0" max="100"
-                required>
+              <label for="playerName" class="block text-gray-200 font-semibold mb-2 text-sm sm:text-base">Nom du
+                Joueur</label>
+              <input type="text" id="playerName"
+                class="w-full px-3 py-2 sm:px-4 sm:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                placeholder="Entrez le nom du joueur">
             </div>
             <div>
-              <label for="shooting" class="block mb-1 text-sm text-gray-300">Shooting</label>
-              <input 
-                type="number" 
-                id="shooting" 
-                class="w-full p-2 rounded-lg bg-gray-700 text-white" 
-                placeholder="0-100" 
-                min="0" 
-                max="100"
-                required>
-            </div>
-            <div>
-              <label for="passing" class="block mb-1 text-sm text-gray-300">Passing</label>
-              <input 
-                type="number" 
-                id="passing" 
-                class="w-full p-2 rounded-lg bg-gray-700 text-white" 
-                placeholder="0-100" 
-                min="0" 
-                max="100"
-                required>
-            </div>
-            <div>
-              <label for="dribbling" class="block mb-1 text-sm text-gray-300">Dribbling</label>
-              <input 
-                type="number" 
-                id="dribbling" 
-                class="w-full p-2 rounded-lg bg-gray-700 text-white" 
-                placeholder="0-100" 
-                min="0" 
-                max="100"
-                required>
-            </div>
-            <div>
-              <label for="defending" class="block mb-1 text-sm text-gray-300">Defending</label>
-              <input 
-                type="number" 
-                id="defending" 
-                class="w-full p-2 rounded-lg bg-gray-700 text-white" 
-                placeholder="0-100" 
-                min="0" 
-                max="100"
-                required>
-            </div>
-            <div>
-              <label for="physical" class="block mb-1 text-sm text-gray-300">Physical</label>
-              <input 
-                type="number" 
-                id="physical" 
-                class="w-full p-2 rounded-lg bg-gray-700 text-white" 
-                placeholder="0-100" 
-                min="0" 
-                max="100"
-                required>
+              <label for="clup" class="block text-gray-200 font-semibold mb-2 text-sm sm:text-base">Club du
+                Joueur</label>
+              <input type="text" id="clup"
+                class="w-full px-3 py-2 sm:px-4 sm:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                placeholder="Nom du club">
             </div>
           </div>
-        </div>
-        <button 
-          type="submit" 
-          class="bg-green-500 px-4 py-2 rounded-lg text-white hover:bg-green-600 w-full">
-          Ajouter le joueur
-        </button>
-      </form>
+
+          <div>
+            <label for="player-position" class="block mb-2 text-sm text-gray-900">Position</label>
+            <select id="player-position" class="w-full p-2 rounded-lg text-black" required>
+              <option value="GK">Gardien (GK)</option>
+              <option value="CB">Défenseur Central (CB)</option>
+              <option value="LB">Latéral Gauche (LB)</option>
+              <option value="RB">Latéral Droit (RB)</option>
+              <option value="CM">Milieu Central (CM)</option>
+              <option value="LW">Ailier Gauche (LW)</option>
+              <option value="RW">Ailier Droit (RW)</option>
+              <option value="ST">Attaquant (ST)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="nationality"
+              class="block text-gray-200 font-semibold mb-2 text-sm sm:text-base">Nationalité</label>
+              <select id="player-country" class="w-full p-2 rounded-lg bg-green-200 text-black" required>
+                <option value="" disabled selected>Sélectionnez un pays</option>
+                <option value="https://cdn.sofifa.net/flags/br.png">Brésil</option>
+                <option value="https://cdn.sofifa.net/flags/ar.png">Argentine</option>
+                <option value="https://cdn.sofifa.net/flags/de.png">Allemagne</option>
+                <option value="https://cdn.sofifa.net/flags/fr.png">France</option>
+                <option value="https://cdn.sofifa.net/flags/it.png">Italie</option>
+                <option value="https://cdn.sofifa.net/flags/es.png">Espagne</option>
+                <option value="https://cdn.sofifa.net/flags/gb-eng.png">Angleterre</option>
+                <option value="https://cdn.sofifa.net/flags/nl.png">Pays-Bas</option>
+                <option value="https://cdn.sofifa.net/flags/pt.png">Portugal</option>
+                <option value="https://cdn.sofifa.net/flags/be.png">Belgique</option>
+              </select>
+              
+          </div>
+
+          <div>
+            <label for="photosrc" class="block text-gray-200 font-semibold mb-2 text-sm sm:text-base">Photo du
+              Joueur</label>
+              <select id="photosrc" class="w-full p-2 rounded-lg bg-green-200 text-black">
+                <option disabled selected>Choisissez le nom du joueur pour l'image</option>
+                <option value="https://cdn.sofifa.net/players/209/981/25_120.png">Yassine Bounou (Morocco)</option>
+                <option value="https://cdn.sofifa.net/players/230/621/25_120.png">Gianluigi Donnarumma (Italy)</option>
+                <option value="https://cdn.sofifa.net/players/203/376/25_120.png">Virgil van Dijk (Netherlands)</option>
+                <option value="https://cdn.sofifa.net/players/205/452/25_120.png">Antonio Rudiger (Germany)</option>
+                <option value="https://cdn.sofifa.net/players/203/376/25_120.png">Virgil van Dijk (Netherlands)</option>
+                <option value="https://cdn.sofifa.net/players/205/452/25_120.png">Antonio Rudiger (Germany)</option>
+                <option value="https://cdn.sofifa.net/players/203/376/25_120.png">Virgil van Dijk (Netherlands)</option>
+                <option value="https://cdn.sofifa.net/players/205/452/25_120.png">Antonio Rudiger (Germany)</option>
+                <option value="https://cdn.sofifa.net/players/192/985/25_120.png">Kevin De Bruyne (Belgium)</option>
+                <option value="https://cdn.sofifa.net/players/212/622/25_120.png">Joshua Kimmich (Germany)</option>
+                <option value="https://cdn.sofifa.net/players/177/003/25_120.png">Luka Modrić (Croatia)</option>
+                <option value="https://cdn.sofifa.net/players/192/985/25_120.png">Kevin De Bruyne (Belgium)</option>
+                <option value="https://cdn.sofifa.net/players/212/622/25_120.png">Joshua Kimmich (Germany)</option>
+                <option value="https://cdn.sofifa.net/players/177/003/25_120.png">Luka Modrić (Croatia)</option>
+                <option value="https://cdn.sofifa.net/players/192/985/25_120.png">Kevin De Bruyne (Belgium)</option>
+                <option value="https://cdn.sofifa.net/players/212/622/25_120.png">Joshua Kimmich (Germany)</option>
+                <option value="https://cdn.sofifa.net/players/177/003/25_120.png">Luka Modrić (Croatia)</option>
+              </select>
+              
+          </div>
+          <div>
+            <label for="player-club" class="block text-gray-300 font-semibold mb-2">Sélectionnez le club du joueur :</label>
+              <select id="player-club" class="w-full p-2 rounded-lg bg-gray-300 text-black" required>
+                <option value="" disabled selected>Sélectionnez un club</option>
+                <option value="https://cdn.sofifa.net/meta/team/239235/120.png">Inter Miami</option>
+                <option value="https://cdn.sofifa.net/meta/team/2506/120.png">Al Nassr</option>
+                <option value="https://cdn.sofifa.net/meta/team/503/120.png">Bayern Munich</option>
+                <option value="https://cdn.sofifa.net/meta/team/3468/120.png">Real Madrid</option>
+                <option value="https://cdn.sofifa.net/meta/team/8/120.png">Liverpool</option>
+                <option value="https://cdn.sofifa.net/meta/team/7011/120.png">Al-Hilal</option>
+                <option value="https://cdn.sofifa.net/meta/team/14/120.png">Manchester United</option>
+                <option value="https://cdn.sofifa.net/meta/team/591/120.png">Paris Saint-Germain</option>
+                <option value="https://cdn.sofifa.net/meta/team/682/120.png">PSV</option>
+                <option value="https://cdn.sofifa.net/meta/team/88/120.png">Fenerbahçe</option>
+                <option value="https://cdn.sofifa.net/meta/team/476/120.png">Al-Ittihad</option>
+                <option value="https://cdn.sofifa.net/meta/team/7980/120.png">Atletico Madrid</option>
+                <option value="https://cdn.sofifa.net/meta/team/3468/120.png">Barcelona</option>
+                <option value="https://cdn.sofifa.net/meta/team/239/085/25_120.png">Manchester City</option>
+                <option value="https://cdn.sofifa.net/meta/team/591/120.png">Paris Saint-Germain</option>
+                <option value="https://cdn.sofifa.net/meta/team/239235/120.png">Inter Miami</option>
+                <option value="https://cdn.sofifa.net/meta/team/7011/120.png">Al-Hilal</option>
+                <option value="https://cdn.sofifa.net/meta/team/8/120.png">Liverpool</option>
+                <option value="https://cdn.sofifa.net/meta/team/503/120.png">Bayern Munich</option>
+                <option value="https://cdn.sofifa.net/meta/team/14/120.png">Manchester United</option>
+              </select>
+              
+              
+          </div>
+          <div id="stats_joue" class="grid hidden grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+            <div>
+              <label for="pace" class="block text-gray-200 font-semibold mb-2 text-sm sm:text-base">Vitesse
+                (PAC)*</label>
+              <input type="number" id="pace" value="97"
+                class="w-full px-3 py-2 sm:px-4 sm:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                placeholder="Ex: 97">
+            </div>
+            <div>
+              <label for="shooting" class="block text-gray-200 font-semibold mb-2 text-sm sm:text-base">Tir
+                (SHO)*</label>
+              <input type="number" id="shooting" value="95"
+                class="w-full px-3 py-2 sm:px-4 sm:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                placeholder="Ex: 95">
+            </div>
+            <div>
+              <label for="passing" class="block text-gray-200 font-semibold mb-2 text-sm sm:text-base">Passes
+                (PAS)*</label>
+              <input type="number" id="passing" value="94"
+                class="w-full px-3 py-2 sm:px-4 sm:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                placeholder="Ex: 94">
+            </div>
+            <div>
+              <label for="dribbling" class="block text-gray-200 font-semibold mb-2 text-sm sm:text-base">Dribble
+                (DRI)*</label>
+              <input type="number" id="dribbling" value="99"
+                class="w-full px-3 py-2 sm:px-4 sm:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                placeholder="Ex: 99">
+            </div>
+            <div>
+              <label for="defending" class="block text-gray-200 font-semibold mb-2 text-sm sm:text-base">Défense
+                (DEF)*</label>
+              <input type="number" id="defending" value="35"
+                class="w-full px-3 py-2 sm:px-4 sm:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                placeholder="Ex: 35">
+            </div>
+            <div>
+              <label for="physical" class="block text-gray-200 font-semibold mb-2 text-sm sm:text-base">Physique
+                (PHY)*</label>
+              <input type="number" id="physical" value="86"
+                class="w-full px-3 py-2 sm:px-4 sm:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                placeholder="Ex: 68">
+            </div>
+          </div>
+          <div id="stats_GK" class="grid hidden grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+            <div>
+              <label for="diving" class="block text-gray-200 font-semibold mb-2 text-sm sm:text-base">Plongée (DIV)*</label>
+              <input type="number" id="diving" value="89"
+                class="w-full px-3 py-2 sm:px-4 sm:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                placeholder="Ex: 89">
+            </div>
+            <div>
+              <label for="handling" class="block text-gray-200 font-semibold mb-2 text-sm sm:text-base">Manche (HAN)*</label>
+              <input type="number" id="handling" value="90"
+                class="w-full px-3 py-2 sm:px-4 sm:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                placeholder="Ex: 90">
+            </div>
+            <div>
+              <label for="kicking" class="block text-gray-200 font-semibold mb-2 text-sm sm:text-base">Dégagement (KIC)*</label>
+              <input type="number" id="kicking" value="78"
+                class="w-full px-3 py-2 sm:px-4 sm:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                placeholder="Ex: 78">
+            </div>
+            <div>
+              <label for="reflexes" class="block text-gray-200 font-semibold mb-2 text-sm sm:text-base">Réflexes (REF)*</label>
+              <input type="number" id="reflexes" value="92"
+                class="w-full px-3 py-2 sm:px-4 sm:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                placeholder="Ex: 92">
+            </div>
+            <div>
+              <label for="speed" class="block text-gray-200 font-semibold mb-2 text-sm sm:text-base">Vitesse (SPD)*</label>
+              <input type="number" id="speed" value="50"
+                class="w-full px-3 py-2 sm:px-4 sm:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                placeholder="Ex: 50">
+            </div>
+            <div>
+              <label for="positioning" class="block text-gray-200 font-semibold mb-2 text-sm sm:text-base">Positionnement (POS)*</label>
+              <input type="number" id="positioning" value="88"
+                class="w-full px-3 py-2 sm:px-4 sm:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                placeholder="Ex: 88">
+            </div>
+          </div>
+          
+
+          <div class="text-center">
+            <button type="button" id="btnajout"
+              class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-300">Ajouter</button>
+          </div>
+
+        </form>
+      </div>
     </div>
     
     
 <h2 class="text-2xl font-semibold mb-4">Équipe</h2>
     <!-- Section Équipe -->
-     <section id="info" class="grid grid-cols-1 md:grid-cols-4 w-full gap-0 md:gap-4 w-full">
+     <section  class="grid grid-cols-1 md:grid-cols-4 w-full gap-0 md:gap-4 w-full">
       
         <div  class="-ml-12 md:ml-0 bg-gray-800 md:max-w-4xl  md:col-span-3  rounded-lg shadow-lg max-w-3xl grid grid-rows-4 grid-cols-5 col-span-1 mt-16 h-screen gap-4 relative"  id="main">
           
   
         </div>
           
-        <div class="bg-gray-900 text-white p-6 rounded-lg shadow-md w-80 block col-span-4  md:block md:col-span-1 mb-10">
+        <div id="info" class="bg-gray-900 text-white p-6 rounded-lg shadow-md w-80 block col-span-4  md:block md:col-span-1 mb-10">
             <!-- Create Squad -->
             <div class="mb-6">
               <label for="squad-name" class="block text-sm font-medium">Create Squad</label>

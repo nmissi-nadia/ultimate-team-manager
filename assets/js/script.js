@@ -119,10 +119,10 @@ function createPlayerCard(position, row, column) {
       <div class="text-xs sm:text-[10px] md:text-xs lg:text-sm">97</div>
       <div class="text-[8px] sm:text-[7px] md:text-[8px]">RW</div>
       <div class="w-2 h-1 mt-[1px] sm:w-1.5 sm:h-1.5 md:w-2 md:h-2">
-        <img src="https://selimdoyranli.com/cdn/fut-player-card/img/argentina.svg" alt="Argentina" class="object-contain" />
+        <img src="" alt="" class="object-contain" />
       </div>
       <div class="w-2 h-2.5 sm:w-1.5 sm:h-2 md:w-2 md:h-2.5">
-        <img src="https://selimdoyranli.com/cdn/fut-player-card/img/barcelona.svg" alt="Barcelona" class="object-contain" />
+        <img src="" alt="" class="object-contain" />
       </div>
     </div>
     <!-- Player Picture -->
@@ -233,7 +233,7 @@ formationSelector.addEventListener("change", (event) => {
 let currentCardId = null;
 
 function openModalAboveButton(button) {
-  const modal = document.getElementById("modal");
+  const modal = document.getElementById("pop_up_ajoute");
   currentCardId = button.closest(".card").id;
 
   const data = JSON.parse(localStorage.getItem(currentCardId)) || {};
