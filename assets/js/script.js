@@ -116,18 +116,18 @@ function createPlayerCard(position, row, column) {
   <div class="relative flex text-[#e9cc74] px-1 sm:px-1 md:px-1 lg:px-2">
     <!-- Player Master Info -->
     <div class="absolute text-[6px] font-light uppercase leading-3 py-1 sm:py-1 md:py-1">
-      <div class="text-xs sm:text-[10px] md:text-xs lg:text-sm">97</div>
-      <div class="text-[8px] sm:text-[7px] md:text-[8px]">RW</div>
+      <div class="text-xs sm:text-[10px] md:text-xs lg:text-sm">score</div>
+      <div class="text-[8px] sm:text-[7px] md:text-[8px]">position</div>
       <div class="w-2 h-1 mt-[1px] sm:w-1.5 sm:h-1.5 md:w-2 md:h-2">
-        <img src="" alt="" class="object-contain" />
+        <img src="" alt="image du pays" class="object-contain" />
       </div>
       <div class="w-2 h-2.5 sm:w-1.5 sm:h-2 md:w-2 md:h-2.5">
-        <img src="" alt="" class="object-contain" />
+        <img src="" alt="image du club" class="object-contain" />
       </div>
     </div>
     <!-- Player Picture -->
     <div class="w-10 h-10 mx-auto overflow-hidden sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12">
-      <img src="https://selimdoyranli.com/cdn/fut-player-card/img/messi.png" alt="Messi" class="object-contain relative -right-1 sm:-right-0.5 md:-right-1 lg:-right-1.5" />
+      <img src="" alt="image du joueur" class="object-contain relative -right-1 sm:-right-0.5 md:-right-1 lg:-right-1.5" />
       <div class="absolute bottom-[-1px] right-0 text-[5px] font-bold uppercase w-full h-2 text-right px-1">
         <span class="ml-[2px]">4*SM</span>
         <span class="ml-[2px]">4*WF</span>
@@ -139,7 +139,7 @@ function createPlayerCard(position, row, column) {
     <div class="block text-black w-[90%] mx-auto py-[1px]">
       <!-- Player Name -->
       <div class="block text-center text-[6px] uppercase border-b border-opacity-10 border-[#e9cc74] pb-[1px] sm:text-[5px] md:text-[6px] lg:text-[7px]">
-        <span class="block">MESSI</span>
+        <span class="block"></span>
       </div>
       <button class="edit-button "></button>
         
