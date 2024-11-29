@@ -112,7 +112,7 @@ _Gérez et personnalisez votre équipe avec des fonctionnalités interactives_
 ## 🧑‍💻 **Auteur**
 
 - **Nom :** Nadia Nmissi  
-- 📧 **Email :** nadia.nmissi@example.com  
+- 📧 **Email :** nmissinadia@gmail.com  
 - 🌐 **GitHub :** [Votre GitHub](https://github.com/nmissi-nadia)
 - 🌐 **LinkedIn :** [Votre Profil](www.linkedin.com/in/nadia-nmissi-9bb00619a) 
 
