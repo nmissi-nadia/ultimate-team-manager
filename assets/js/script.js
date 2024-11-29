@@ -231,102 +231,193 @@ formationSelector.addEventListener("change", (event) => {
 
 // Modal : Ouvrir et gérer les données du formulaire
 let currentCardId = null;
-
-function openModalAboveButton(button) {
+document.addEventListener("DOMContentLoaded", () => {
+  const addPlayerButton = document.getElementById("add_joueur");
   const modal = document.getElementById("pop_up_ajoute");
-  currentCardId = button.closest(".card").id;
+  const closeButton = document.getElementById("closeButton");
 
-  const data = JSON.parse(localStorage.getItem(currentCardId)) || {};
-  document.getElementById("player-name").value = data.name || "";
-  document.getElementById("player-rating").value = data.rating || "";
-  document.getElementById("pace").value = data.stats?.pace || "";
-  document.getElementById("shooting").value = data.stats?.shooting || "";
-  document.getElementById("passing").value = data.stats?.passing || "";
-  document.getElementById("dribbling").value = data.stats?.dribbling || "";
-  document.getElementById("defending").value = data.stats?.defending || "";
-  document.getElementById("physical").value = data.stats?.physical || "";
-
-  modal.classList.remove("hidden");
-}
-
-document.getElementById("player-form").addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const name = document.getElementById("player-name").value;
-  const rating = document.getElementById("player-rating").value;
-  const stats = {
-    pace: document.getElementById("pace").value,
-    shooting: document.getElementById("shooting").value,
-    passing: document.getElementById("passing").value,
-    dribbling: document.getElementById("dribbling").value,
-    defending: document.getElementById("defending").value,
-    physical: document.getElementById("physical").value,
-  };
-
-  const playerData = { name, rating, stats };
-  localStorage.setItem(currentCardId, JSON.stringify(playerData));
-  updateCard(currentCardId, playerData);
-
-  document.getElementById("modal").classList.add("hidden");
-});
-
-
-
-
-// ------------partie de clique buton affiche
-btn_ajout.addEventListener("click", (e) => {
-  if (e.target.closest("btn_ajout")) {
-    currentCardId = e.target.closest(".card").id;
+  // Fonction pour ouvrir le modal
+  addPlayerButton.addEventListener("click", () => {
     modal.classList.remove("hidden");
-  }
+  });
+
+  // Fonction pour fermer le modal
+  closeButton.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
+
+  // Fermer le modal en cliquant en dehors
+  window.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.classList.add("hidden");
+    }
+  });
+  
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const playerForm = document.getElementById("playerForm");
+  const statsJoue = document.getElementById("stats_joue");
+  const statsGK = document.getElementById("stats_GK");
+  const playerPosition = document.getElementById("player-position");
+
+  // Gérer l'affichage dynamique des sections stats
+  playerPosition.addEventListener("change", () => {
+    const selectedPosition = playerPosition.value;
+    if (selectedPosition === "GK") {
+      statsJoue.classList.add("hidden");
+      statsGK.classList.remove("hidden");
+    } else {
+      statsJoue.classList.remove("hidden");
+      statsGK.classList.add("hidden");
+    }
+  });
+
+  // Stocker les informations dans le Local Storage
+  playerForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const playerName = document.getElementById("playerName").value;
+    const playerClub = document.getElementById("clup").value;
+    const playerCountry = document.getElementById("player-country").value;
+    const playerimage = document.getElementById("photosrc").value;
+    const position = playerPosition.value;
+
+    let playerData = {
+      name: playerName,
+      club: playerClub,
+      country: playerCountry,
+      image:playerimage,
+      position: position,
+    };
+
+    // Ajouter les statistiques spécifiques en fonction de la position
+    if (position === "GK") {
+      playerData.stats = {
+        diving: document.getElementById("diving").value,
+        handling: document.getElementById("handling").value,
+        kicking: document.getElementById("kicking").value,
+        reflexes: document.getElementById("reflexes").value,
+        speed: document.getElementById("speed").value,
+        positioning: document.getElementById("positioning").value,
+      };
+    } else {
+      playerData.stats = {
+        pace: document.getElementById("pace").value,
+        shooting: document.getElementById("shooting").value,
+        passing: document.getElementById("passing").value,
+        dribbling: document.getElementById("dribbling").value,
+        defending: document.getElementById("defending").value,
+        physical: document.getElementById("physical").value,
+      };
+    }
+
+    // Enregistrer les données dans le Local Storage
+    let players = JSON.parse(localStorage.getItem("players")) || [];
+    players.push(playerData);
+    localStorage.setItem("players", JSON.stringify(players));
+
+    // Réinitialiser le formulaire et fermer le modal
+    playerForm.reset();
+    document.getElementById("pop_up_ajoute").classList.add("hidden");
+    statsJoue.classList.remove("hidden");
+    statsGK.classList.add("hidden");
+  });
 });
 
-// modal une autre fois pour ajouté les  joiueurs
-// Ajouter un joueur via le formulaire
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
 
-  const name = document.getElementById("player-name").value;
-  const position = document.getElementById("player-position").value;
-  const rating = document.getElementById("player-rating").value;
-  const stats = {
-    pace: document.getElementById("pace").value,
-    shooting: document.getElementById("shooting").value,
-    passing: document.getElementById("passing").value,
-    dribbling: document.getElementById("dribbling").value,
-    defending: document.getElementById("defending").value,
-    physical: document.getElementById("physical").value,
-  };
+document.addEventListener("DOMContentLoaded", () => {
+  const field = document.getElementById("main");
+  const playerListModal = document.createElement("div");
+  const players = JSON.parse(localStorage.getItem("players")) || [];
+  let currentCardId = null;
 
-  // Vérifier les limites de joueurs
-  const positionCount = players.filter((p) => p.position === position).length;
-  if (players.length >= maxPlayers || positionCount >= maxByPosition[position]) {
-    alert("Limite atteinte pour cette position ou le total des joueurs !");
-    return;
+  // Création du modal de la liste des joueurs
+  playerListModal.id = "playerListModal";
+  playerListModal.className = "absolute hidden top-0 left-0 w-full h-full bg-gray-900 bg-opacity-75 flex justify-center items-center z-30";
+  playerListModal.innerHTML = `
+    <div class="bg-white w-3/4 max-w-lg rounded-lg shadow-lg p-6">
+      <h2 class="text-lg font-bold mb-4 text-center">Sélectionnez un joueur</h2>
+      <ul id="playerList" class="space-y-2 max-h-60 overflow-y-auto"></ul>
+      <button id="closePlayerList" class="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">Fermer</button>
+    </div>
+  `;
+  document.body.appendChild(playerListModal);
+
+  const playerList = document.getElementById("playerList");
+  const closePlayerList = document.getElementById("closePlayerList");
+
+  // Fonction pour ouvrir la liste des joueurs
+  function openPlayerList(position) {
+    // Filtrer les joueurs par position
+    const filteredPlayers = players.filter(player => player.position === position);
+    playerList.innerHTML = ""; // Vider la liste existante
+
+    if (filteredPlayers.length === 0) {
+      playerList.innerHTML = `<li class="text-center text-gray-500">Aucun joueur disponible pour cette position</li>`;
+    } else {
+      filteredPlayers.forEach(player => {
+        const listItem = document.createElement("li");
+        listItem.className = "flex items-center justify-between bg-gray-100 p-2 rounded-lg hover:bg-gray-200 cursor-pointer";
+        listItem.innerHTML = `
+          <span>${player.name}</span>
+          <span class="text-gray-500">${player.position}</span>
+        `;
+        listItem.addEventListener("click", () => {
+          updateCardWithPlayer(player);
+          playerListModal.classList.add("hidden");
+        });
+        playerList.appendChild(listItem);
+      });
+    }
+
+    playerListModal.classList.remove("hidden");
   }
 
-  // Ajouter le joueur
-  const playerData = { id: currentCardId, name, position, rating, stats };
-  players = players.filter((p) => p.id !== currentCardId); // Supprimer les doublons
-  players.push(playerData);
-  localStorage.setItem("players", JSON.stringify(players));
-
-  updateCard(currentCardId, playerData);
-  updateReservedList();
-
-  modal.classList.add("hidden");
-});
-
-// Mettre à jour une carte
-function updateCard(cardId, player) {
-  const card = document.getElementById(cardId);
-  if (card) {
-    card.querySelector(".card-title").textContent = player.name;
-    card.querySelector(".card-rating").textContent = `Rating: ${player.rating}`;
-    card.querySelector(".card-stats").textContent = `
-      PAC: ${player.stats.pace}, SHO: ${player.stats.shooting}, PAS: ${player.stats.passing},
-      DRI: ${player.stats.dribbling}, DEF: ${player.stats.defending}, PHY: ${player.stats.physical}
-    `;
+  // Fonction pour mettre à jour une carte avec les informations d'un joueur sélectionné
+  function updateCardWithPlayer(player) {
+    const card = document.getElementById(currentCardId);
+  
+    if (!card) {
+      console.error(`Carte avec l'id ${currentCardId} introuvable.`);
+      return;
+    }
+  
+    // Mise à jour du nom du joueur
+    const cardTitle = card.querySelector(".card-title");
+    if (cardTitle) {
+      cardTitle.textContent = player.name || "Nom indisponible";
+    } else {
+      console.warn(`Élément ".card-title" introuvable pour la carte ${currentCardId}.`);
+    }
+  
+    // Mise à jour du rating
+    const cardRating = card.querySelector(".card-rating");
+    if (cardRating) {
+      cardRating.textContent = `Rating: ${player.stats?.pace || "--"}`;
+    } else {
+      console.warn(`Élément ".card-rating" introuvable pour la carte ${currentCardId}.`);
+    }
+  
+    // Mise à jour des statistiques
+    const cardStats = card.querySelector(".card-stats");
+    if (cardStats) {
+      if (player.position === "GK") {
+        cardStats.textContent = `
+          Réflexes: ${player.stats.reflexes || "--"}, Plongée: ${player.stats.diving || "--"}, 
+          Manche: ${player.stats.handling || "--"}, Position: ${player.stats.positioning || "--"}
+        `;
+      } else {
+        cardStats.textContent = `
+          PAC: ${player.stats.pace || "--"}, SHO: ${player.stats.shooting || "--"}, 
+          PAS: ${player.stats.passing || "--"}, DRI: ${player.stats.dribbling || "--"}, 
+          DEF: ${player.stats.defending || "--"}, PHY: ${player.stats.physical || "--"}
+        `;
+      }
+    } else {
+      console.warn(`Élément ".card-stats" introuvable pour la carte ${currentCardId}.`);
+    }
   }
-}
+  
+  });
+
 
