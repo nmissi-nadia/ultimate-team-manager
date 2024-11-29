@@ -8,13 +8,15 @@
     <meta name="author" content="Nadia Nmissi" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <title>Ultimate Team Manager - Créez et Gérez Votre Équipe EA FC 25</title>
 </head>
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
 
     <header class="bg-gray-800 flex justify-between items-center">
         <!-- <h1 class="text-xl font-bold">EA FC 24 Squad Builder</h1> -->
-        <nav id="navbar" class="bg-gray-900 text-white w-full fixed top-0 z-10 shadow-lg">
+        <nav id="navbar" class="bg-gray-900 text-white w-full fixed top-0 z-10 shadow-lg z-20">
           <div class="container mx-auto flex w-full justify-between items-center py-4 px-6">
             <!-- Logo -->
             <a href="#" class="text-2xl font-bold text-yellow-400 hover:text-yellow-300">Ultimate Team</a>
@@ -60,18 +62,13 @@
                 class="w-full px-3 py-2 sm:px-4 sm:py-3 border bg-green-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                 placeholder="Entrez le nom du joueur">
             </div>
-            <div>
-              <label for="clup" class="block text-gray-200 font-semibold mb-2 text-sm sm:text-base">Club du
-                Joueur</label>
-              <input type="text" id="clup"
-                class="w-full px-3 py-2 sm:px-4 sm:py-3 border bg-green-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                placeholder="Nom du club">
-            </div>
+            
           </div>
 
           <div>
             <label for="player-position" class="block mb-2 text-sm text-gray-900">Position</label>
             <select id="player-position" class="w-full p-2 rounded-lg text-black bg-green-200" required>
+              <option disabled selected>Choisissez la position du joueur</option>
               <option value="GK">Gardien (GK)</option>
               <option value="CB">Défenseur Central (CB)</option>
               <option value="LB">Latéral Gauche (LB)</option>
@@ -253,7 +250,7 @@
     <!-- Section Équipe -->
      <section  class="grid grid-cols-1 md:grid-cols-4 w-full gap-0 md:gap-4 w-full">
       
-        <div  class="-ml-12 md:ml-0 bg-gray-800 md:max-w-4xl  md:col-span-3  rounded-lg shadow-lg max-w-3xl grid grid-rows-4 grid-cols-5 col-span-1 mt-16 h-screen gap-4 relative"  id="main">
+        <div  class="-ml-12 md:ml-0 bg-gray-800 md:max-w-5xl  md:col-span-3  md:pb-4 rounded-lg shadow-lg max-w-3xl grid grid-rows-4 grid-cols-5 col-span-1 mt-16 h-screen gap-4 relative"  id="main">
           
   
         </div>
@@ -273,10 +270,10 @@
             </div>
           
             <!-- Squad Info -->
-            <div class="border-t border-gray-700 pt-4">
+            <div class="border-t  border-gray-700 pt-4">
               <label class="block text-sm font-medium mb-2">Squad Info</label>
-              <div class="flex items-center justify-between mb-4">
-                <select id="formation-selector" class="bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
+              <div class="flex items-center flex-col  justify-between mb-4">
+                <select id="formation-selector" class="bg-gray-800 mb-6 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
                   <option value="" disabled selected>Choisir une formation</option>
                     <option value="4-4-2">4-4-2</option>
                     <option value="4-3-3">4-3-3</option>
@@ -302,7 +299,7 @@
               </div>
             </div>
           
-            <button id="add_joueur"  class="bg-green-500 w-20 h-10 -ml-15  rounded flex items-center text-4 justify-center ">Ajouter une joueur</button>
+            <button id="add_joueur"  class="bg-green-500 h-10 -ml-15  w-full rounded-lg flex items-center text-4 justify-center ">Ajouter une joueur</button>
             <!-- Total Chemistry -->
             <div class="border-t border-gray-700 pt-4">
               <label class="block text-sm font-medium mb-2">Total Chemistry</label>
@@ -319,129 +316,10 @@
 
 
 
-        <div class="grid col-span-4 sm:grid-cols-3 grid-cols-1 lg:grid-cols-5 h-auto  lg:h-[200px] gap-4 bg-gray-800 p-4 rounded-lg">
+        <div id="reserve" class="grid col-span-4 sm:grid-cols-3 grid-cols-1 lg:grid-cols-5 h-auto  lg:h-[200px] gap-4 bg-gray-800 p-4 rounded-lg">
             <!-- Reserve Player Card 1 -->
              <!-- Manager -->
-             <div class="card mx-auto bg-transparent p-4 rounded-lg shadow-md relative z-2">
             
-              <div class="relative w-22 h-[170px] bg-[url('https://cdn.easysbc.io/fc25/cards/e_7_0.png')] bg-center bg-cover bg-no-repeat py-3 z-10 transition ease-in duration-200 sm:w-12 sm:h-[90px] md:w-20 md:h-[140px] lg:w-24 lg:h-[150px]">
-                <div class="relative flex text-[#e9cc74] px-1 sm:px-1 md:px-1 lg:px-2">
-                  <!-- Player Master Info -->
-                  <div class="absolute text-[6px] font-light uppercase leading-3 py-1 sm:py-1 md:py-1">
-                    <div class="text-xs sm:text-[10px] md:text-xs lg:text-sm">score</div>
-                    <div class="text-[8px] sm:text-[7px] md:text-[8px]">position</div>
-                    <div class="w-2 h-1 mt-[1px] sm:w-1.5 sm:h-1.5 md:w-2 md:h-2">
-                      <img src="" alt="image du pays" class="object-contain" />
-                    </div>
-                    <div class="w-2 h-2.5 sm:w-1.5 sm:h-2 md:w-2 md:h-2.5">
-                      <img src="" alt="image du club" class="object-contain" />
-                    </div>
-                  </div>
-                  <!-- Player Picture -->
-                  <div class="w-10 h-10 mx-auto overflow-hidden sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12">
-                    <img src="" alt="image du joueur" class="object-contain relative -right-1 sm:-right-0.5 md:-right-1 lg:-right-1.5" />
-                    <div class="absolute bottom-[-1px] right-0 text-[5px] font-bold uppercase w-full h-2 text-right px-1">
-                      <span class="ml-[2px]">4*SM</span>
-                      <span class="ml-[2px]">4*WF</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- Player Card Bottom -->
-                <div class="relative">
-                  <div class="block text-black w-[90%] mx-auto py-[1px]">
-                    <!-- Player Name -->
-                    <div class="block text-center text-[6px] uppercase border-b border-opacity-10 border-[#e9cc74] pb-[1px] sm:text-[5px] md:text-[6px] lg:text-[7px]">
-                      <span class="block"></span>
-                    </div>
-                    <button class="edit-button "></button>
-                      
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-                
-          <div class=" mx-auto bg-transparent p-4 rounded-lg shadow-md relative z-2">
-            
-            <div class="relative w-22 h-[170px] bg-[url('https://cdn.easysbc.io/fc25/cards/e_7_0.png')] bg-center bg-cover bg-no-repeat py-3 z-10 transition ease-in duration-200 sm:w-12 sm:h-[90px] md:w-20 md:h-[140px] lg:w-24 lg:h-[150px]">
-              <div class="relative flex text-[#e9cc74] px-1 sm:px-1 md:px-1 lg:px-2">
-                <!-- Player Master Info -->
-                <div class="absolute text-[6px] font-light uppercase leading-3 py-1 sm:py-1 md:py-1">
-                  <div class="text-xs sm:text-[10px] md:text-xs lg:text-sm">score</div>
-                  <div class="text-[8px] sm:text-[7px] md:text-[8px]">position</div>
-                  <div class="w-2 h-1 mt-[1px] sm:w-1.5 sm:h-1.5 md:w-2 md:h-2">
-                    <img src="" alt="image du pays" class="object-contain" />
-                  </div>
-                  <div class="w-2 h-2.5 sm:w-1.5 sm:h-2 md:w-2 md:h-2.5">
-                    <img src="" alt="image du club" class="object-contain" />
-                  </div>
-                </div>
-                <!-- Player Picture -->
-                <div class="w-10 h-10 mx-auto overflow-hidden sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12">
-                  <img src="" alt="image du joueur" class="object-contain relative -right-1 sm:-right-0.5 md:-right-1 lg:-right-1.5" />
-                  <div class="absolute bottom-[-1px] right-0 text-[5px] font-bold uppercase w-full h-2 text-right px-1">
-                    <span class="ml-[2px]">4*SM</span>
-                    <span class="ml-[2px]">4*WF</span>
-                  </div>
-                </div>
-              </div>
-              <!-- Player Card Bottom -->
-              <div class="relative">
-                <div class="block text-black w-[90%] mx-auto py-[1px]">
-                  <!-- Player Name -->
-                  <div class="block text-center text-[6px] uppercase border-b border-opacity-10 border-[#e9cc74] pb-[1px] sm:text-[5px] md:text-[6px] lg:text-[7px]">
-                    <span class="block"></span>
-                  </div>
-                  <button class="edit-button "></button>
-                    
-                  </div>
-                  
-                </div>
-              </div>
-            </div>
-                
-          
-            <!-- Reserve Player Card 2 -->
-            <div class=" mx-auto bg-transparent p-4 rounded-lg shadow-md relative z-2">
-            
-              <div class="relative w-22 h-[170px] bg-[url('https://cdn.easysbc.io/fc25/cards/e_7_0.png')] bg-center bg-cover bg-no-repeat py-3 z-10 transition ease-in duration-200 sm:w-12 sm:h-[90px] md:w-20 md:h-[140px] lg:w-24 lg:h-[150px]">
-                <div class="relative flex text-[#e9cc74] px-1 sm:px-1 md:px-1 lg:px-2">
-                  <!-- Player Master Info -->
-                  <div class="absolute text-[6px] font-light uppercase leading-3 py-1 sm:py-1 md:py-1">
-                    <div class="text-xs sm:text-[10px] md:text-xs lg:text-sm">score</div>
-                    <div class="text-[8px] sm:text-[7px] md:text-[8px]">position</div>
-                    <div class="w-2 h-1 mt-[1px] sm:w-1.5 sm:h-1.5 md:w-2 md:h-2">
-                      <img src="" alt="image du pays" class="object-contain" />
-                    </div>
-                    <div class="w-2 h-2.5 sm:w-1.5 sm:h-2 md:w-2 md:h-2.5">
-                      <img src="" alt="image du club" class="object-contain" />
-                    </div>
-                  </div>
-                  <!-- Player Picture -->
-                  <div class="w-10 h-10 mx-auto overflow-hidden sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12">
-                    <img src="" alt="image du joueur" class="object-contain relative -right-1 sm:-right-0.5 md:-right-1 lg:-right-1.5" />
-                    <div class="absolute bottom-[-1px] right-0 text-[5px] font-bold uppercase w-full h-2 text-right px-1">
-                      <span class="ml-[2px]">4*SM</span>
-                      <span class="ml-[2px]">4*WF</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- Player Card Bottom -->
-                <div class="relative">
-                  <div class="block text-black w-[90%] mx-auto py-[1px]">
-                    <!-- Player Name -->
-                    <div class="block text-center text-[6px] uppercase border-b border-opacity-10 border-[#e9cc74] pb-[1px] sm:text-[5px] md:text-[6px] lg:text-[7px]">
-                      <span class="block"></span>
-                    </div>
-                    <button class="edit-button "></button>
-                      
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-          
-            <!-- Add more reserve player cards here -->
           
           </div>
            
