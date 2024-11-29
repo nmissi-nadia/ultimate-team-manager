@@ -5,7 +5,7 @@ Voici une version professionnelle de votre fichier **README.md** avec des icône
 
 ---
 
-```markdown
+
 # 🌟 **Ultimate Team Manager - EA FC 25**
 
 ![Ultimate Team Manager Logo](https://via.placeholder.com/300x100)  
@@ -122,7 +122,7 @@ _Gérez et personnalisez votre équipe avec des fonctionnalités interactives_
 ## 💡 **Remerciements**
 
 Merci à **YouCode** pour son soutien et ses précieux enseignements, ainsi qu'à tous les développeurs qui ont contribué à enrichir ce projet.
-```
+
 
 ---
 
