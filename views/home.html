@@ -47,14 +47,14 @@
     <div id="pop_up_ajoute"  class="absolute hidden top-[0] z-20 left-1/2 transform -translate-x-1/2 bg-gray-800 flex justify-center items-center p-4 sm:p-6 md:p-8 w-[90%] max-w-[600px]">
       <div class="bg-gray-900 shadow-2xl rounded-lg w-full relative p-6 sm:p-8">
         <button id="closeButton"
-          class="absolute top-4 right-4 text-white text-2xl sm:text-4xl w-8 sm:w-10 h-8 sm:h-10 flex items-center justify-center bg-red-500 rounded-full hover:bg-red-600 transition-colors duration-300">
+          class="absolute top-2 pt-1 right-4 text-white text-2xl sm:text-4xl w-8 sm:w-10 h-8 sm:h-10 flex items-center justify-center bg-red-500 rounded-full hover:bg-red-600 transition-colors duration-300">
           &times;
         </button>
 
         <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center text-white">Ajouter une Carte de Joueur</h2>
 
         <form id="playerForm" class="space-y-4 sm:space-y-6">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+          <div class="grid grid-cols-1 col-span-4 sm:grid-cols-1 gap-4 sm:gap-6">
             <div>
               <label for="playerName" class="block text-gray-200 font-semibold mb-2 text-sm sm:text-base">Nom du
                 Joueur</label>
@@ -66,7 +66,7 @@
           </div>
 
           <div>
-            <label for="player-position" class="block mb-2 text-sm text-gray-900">Position</label>
+            <label for="player-position" class="block mb-2 text-sm text-gray-200">Position</label>
             <select id="player-position" class="w-full p-2 rounded-lg text-black bg-green-200" required>
               <option disabled selected>Choisissez la position du joueur</option>
               <option value="GK">Gardien (GK)</option>
@@ -248,14 +248,14 @@
     
 <h2 class="text-2xl font-semibold mb-4">Équipe</h2>
     <!-- Section Équipe -->
-     <section  class="grid grid-cols-1 md:grid-cols-4 w-full gap-0 md:gap-4 w-full">
+     <section  class="grid grid-cols-1 md:grid-cols-4 gap-0 md:gap-4 w-full">
       
-        <div  class="-ml-12 md:ml-0 bg-gray-800 md:max-w-5xl  md:col-span-3  md:pb-4 rounded-lg shadow-lg max-w-3xl grid grid-rows-4 grid-cols-5 col-span-1 mt-16 h-screen gap-4 relative"  id="main">
+        <div  class="-ml-12 md:ml-0 bg-gray-800 md:max-w-5xl  md:col-span-3  md:pb-4 rounded-lg max-w-3xl grid grid-rows-4 grid-cols-5 col-span-1 mt-16 h-screen gap-4 relative"  id="main">
           
   
         </div>
           
-        <div id="info" class="bg-gray-900 text-white p-6 rounded-lg shadow-md w-[400px] sm:w-80 block col-span-4  md:block md:col-span-1 mb-10">
+        <div id="info" class="bg-gray-900 text-white p-6 rounded-lg shadow-md w-[300px] sm:w-80 block col-span-4  md:block md:col-span-1 mb-10">
             <!-- Create Squad -->
             <div class="mb-6">
               <label for="squad-name" class="block text-sm font-medium">Create Squad</label>
@@ -316,7 +316,7 @@
 
 
 
-        <div id="reserve" class="grid col-span-4 sm:grid-cols-3 grid-cols-1 lg:grid-cols-5 h-auto  lg:h-[200px] gap-4 bg-gray-800 p-4 rounded-lg">
+        <div id="reserve"  class="grid col-span-4 sm:grid-cols-3 grid-cols-1 lg:grid-cols-5 h-auto  lg:h-[200px] gap-4 bg-gray-800 p-4 rounded-lg">
             <!-- Reserve Player Card 1 -->
              <!-- Manager -->
             

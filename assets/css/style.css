@@ -6,3 +6,17 @@ body{
     height: 100vh;
     
 }
+
+#reserve {
+    display: flex;
+    animation: scroll 10s linear infinite; /* Animation continue */
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
