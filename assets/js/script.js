@@ -22,32 +22,12 @@ document.addEventListener("DOMContentLoaded", () => {
       "flex-col",
       "space-y-4",
       "bg-gray-900",
-      "p-4",
       "rounded-lg",
       "md:flex-row",
       "md:space-y-0",
       "md:space-x-8"
     );
   });
-
-  // Change active link on scroll
-  const sections = document.querySelectorAll("section");
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          menuLinks.forEach((link) => {
-            link.classList.remove("text-yellow-400", "font-bold");
-            if (link.getAttribute("href") === `#${entry.target.id}`) {
-              link.classList.add("text-yellow-400", "font-bold");
-            }
-          });
-        }
-      });
-    },
-    { threshold: 0.5 }
-  );
-  sections.forEach((section) => observer.observe(section));
 
   // Add sticky effect
   window.addEventListener("scroll", () => {
@@ -111,11 +91,11 @@ function calculateColumns(playerCount) {
 
 // Création d'une carte de joueur
 function createPlayerCard(position, row, column,index) {
-  const playerCard = document.createElement("div");
-  const uniqueId = `${position}-${index}`; // ID unique basé sur position + index
-    playerCard.id = uniqueId;
-  playerCard.className = "card mx-auto bg-transparent p-4 rounded-lg relative z-2";
-  playerCard.innerHTML = `
+  const Cardjoueur = document.createElement("div");
+  const uniqueId = `${position}-${index}`;
+  Cardjoueur.id = uniqueId;
+  Cardjoueur.className = "card mx-auto bg-transparent p-4 rounded-lg relative z-2";
+  Cardjoueur.innerHTML = `
      <div class="relative w-22 h-[170px] bg-[url('https://cdn.easysbc.io/fc25/cards/e_7_0.png')] bg-center bg-cover bg-no-repeat py-3 z-10 transition ease-in duration-200 sm:w-12 sm:h-[90px] md:w-20 md:h-[140px] lg:w-24 lg:h-[150px]">
       <div class="relative flex text-[#e9cc74] px-1 sm:px-1 md:px-1 lg:px-2">
         <!-- Player Master Info -->
@@ -148,8 +128,9 @@ function createPlayerCard(position, row, column,index) {
                 : `PAC: --, SHO: --, PAS: --,<br> DRI: --, DEF: --, PHY: --`
             }
           </div>
-          <div class=" flex justify-between"><button id="edit-button" class="flex bg-green-900 w-10 center mt-0 justify-self-center  rounded-lg items-center text-white text-s"><i class="fa fa-trash" aria-hidden="true"></i></button>
-          <button onclick="openPlayerList('${playerCard.id}','${position}')
+          <div class=" flex justify-between">
+          <button id="edit-button" onclick="supprimer_joueur('${Cardjoueur.id}')" class="flex bg-green-900 w-10 center mt-0 justify-self-center  rounded-lg items-center text-white text-s"><i class="fa fa-trash" aria-hidden="true"></i></button>
+          <button onclick="openPlayerList('${Cardjoueur.id}','${position}')
           " id="change-button" class="flex bg-green-900 w-8 mt-0 rounded-lg justify-self-center text-white text-s"><i class="fas fa-edit"></i></button></div>
          
         </div>
@@ -162,57 +143,22 @@ function createPlayerCard(position, row, column,index) {
    
   `;
 
-  playerCard.style.gridRow = row;
-  playerCard.style.gridColumn = column;
-  field.appendChild(playerCard);
+  Cardjoueur.style.gridRow = row;
+  Cardjoueur.style.gridColumn = column;
+  field.appendChild(Cardjoueur);
 
 
   //  loadPlayerData(position);
 
   // Événement pour ouvrir le modal
     console.log(document.getElementById("change-button"));
+    
 }
-
-
-
-// Chargement des données sauvegardées
-// function loadPlayerData(cardId) {
-//   const data = JSON.parse(localStorage.getItem(cardId));
-//   if (data) {
-//     updateCard(cardId, data);
-//   }
-// }
-// Mise à jour visuelle des cartes
-// function updateCard(cardId, data) {
-//   const card = document.getElementById(cardId);
-//   if (!card) return;
-
-//   const cardTitle = card.querySelector(".card-title");
-//   const cardRating = card.querySelector(".card-rating");
-//   const cardStats = card.querySelector(".card-stats");
-
-//   if (cardTitle) cardTitle.textContent = data.name || "Nom inconnu";
-//   if (cardRating) cardRating.textContent = `Rating: ${data.rating || "--"}`;
-//   if (cardStats) {
-//     if (cardId === "GK") {
-//       cardStats.textContent = `
-//         Réflexes: ${data.stats.reflexes || "--"}, 
-//         Plongeons: ${data.stats.diving || "--"}, 
-//         Jeu au pied: ${data.stats.kicking || "--"}
-//       `;
-//     } else {
-//       cardStats.textContent = `
-//         PAC: ${data.stats.pace || "--"}, SHO: ${data.stats.shooting || "--"}, 
-//         PAS: ${data.stats.passing || "--"}, DRI: ${data.stats.dribbling || "--"}, 
-//         DEF: ${data.stats.defending || "--"}, PHY: ${data.stats.physical || "--"}
-//       `;
-//     }
-//   }
-// }
+// ------------------------------------------choix du formation-----------------------
 
 // Générer la formation d'aores le formation selecter
 function generateFormation(formation) {
-  clearField(); // Supprimer les cartes existantes
+  clearField(); 
   formation.forEach((line) => {
     const positions = line.positions;
     const row = line.row;
@@ -242,26 +188,19 @@ formationSelector.addEventListener("change", (event) => {
       console.warn("Formation inconnue :", selectedValue);
   }
 });
-
-
-// Modal : Ouvrir et gérer les données du formulaire
-let currentCardId = null;
-
+// ---------------------------------------------------Ajout des joueurs-----------------
   const addPlayerButton = document.getElementById("add_joueur");
   const modal = document.getElementById("pop_up_ajoute");
   const closeButton = document.getElementById("closeButton");
 
-  // Fonction pour ouvrir le modal
   addPlayerButton.addEventListener("click", () => {
     modal.classList.remove("hidden");
   });
 
-  // Fonction pour fermer le modal
   closeButton.addEventListener("click", () => {
     modal.classList.add("hidden");
   });
 
-  // Fermer le modal en cliquant en dehors
   window.addEventListener("click", (event) => {
     if (event.target === modal) {
       modal.classList.add("hidden");
@@ -269,7 +208,7 @@ let currentCardId = null;
   });
   
 
- // Gérer l'affichage dynamique des sections stats
+ //l'affichage des sections stats
  playerPosition.addEventListener("change", () => {
   const selectedPosition = playerPosition.value;
   if (selectedPosition === "GK") {
@@ -280,8 +219,7 @@ let currentCardId = null;
     statsGK.classList.add("hidden");
   }
 });
-
-// Stocker les informations dans le Local Storage
+// validation et enregistrement
 playerForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const playerName = document.getElementById("playerName").value.trim();
@@ -294,6 +232,12 @@ playerForm.addEventListener("submit", (event) => {
     Alertperso("Le nom du joueur est obligatoire.");
     return;
   }
+
+  const Regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
+    if (!Regex.test(playerName)) {
+        Alertperso("Le nom du joueur ne doit contenir que des lettres et des espaces.");
+        return;
+    }
 
   if (!playerClub) {
     Alertperso("Veuillez sélectionner un club.");
@@ -368,6 +312,8 @@ function validateStat(statId) {
   }
   return value;
 }
+// --------------------------------------------------------------------------------------
+// suppresion des joueurs 
 
 
 
@@ -600,7 +546,7 @@ function enregistreequipeformation(teamName) {
       // Vérifier si le joueur existe sur cette carte
       if (playerName) {
           formation.push({
-              position, // Position sur le terrain (ex. "GK-1")
+              position, 
               player: {
                   name: playerName,
                   image: playerImage,
@@ -743,7 +689,7 @@ carousel.addEventListener("mouseleave", () => {
     carousel.style.animationPlayState = "running";
 });
 
-
+// --------------------------------------------------------------------------------------------
 
 
 
@@ -761,9 +707,9 @@ function Alertperso(message) {
 
   // Contenu de la boîte d'alerte
   alertBox.innerHTML = `
-      <div class="bg-white rounded-lg shadow-lg w-80 p-4 text-center">
+      <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 rounded-lg shadow-lg w-80 p-4 text-center">
           <p class="text-gray-800 text-lg font-semibold mb-4">${message}</p>
-          <button id="close-alert-btn" class="px-4 py-2 bg-blue-500 text-white rounded-lg">
+          <button id="close-alert-btn" class="px-4 py-2 bg-green-700 text-white rounded-lg">
               OK
           </button>
       </div>
