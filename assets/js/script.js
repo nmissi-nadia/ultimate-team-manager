@@ -96,7 +96,7 @@ function createPlayerCard(position, row, column,index) {
   Cardjoueur.id = uniqueId;
   Cardjoueur.className = "card mx-auto bg-transparent p-4 rounded-lg relative z-2";
   Cardjoueur.innerHTML = `
-     <div class="relative w-22 h-[170px] bg-[url('https://cdn.easysbc.io/fc25/cards/e_7_0.png')] bg-center bg-cover bg-no-repeat py-3 z-10 transition ease-in duration-200 sm:w-12 sm:h-[90px] md:w-20 md:h-[140px] lg:w-24 lg:h-[150px]">
+     <div class="relative w-24 h-[500px] bg-[url('https://cdn.easysbc.io/fc25/cards/e_7_0.png')] bg-center bg-cover bg-no-repeat py-3 z-10 transition ease-in duration-200 sm:w-12 sm:h-[90px] md:w-20 md:h-[140px] lg:w-24 lg:h-[150px]">
       <div class="relative flex text-[#e9cc74] px-1 sm:px-1 md:px-1 lg:px-2">
         <!-- Player Master Info -->
         <div class="absolute text-[6px] font-light uppercase leading-3 py-1 sm:py-1 md:py-1">
