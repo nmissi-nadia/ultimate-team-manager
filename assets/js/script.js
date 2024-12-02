@@ -130,8 +130,11 @@ function createPlayerCard(position, row, column,index) {
           </div>
           <div class=" flex justify-between">
           <button id="edit-button" onclick="supprimer_joueur('${Cardjoueur.id}')" class="flex bg-green-900 w-10 center mt-0 justify-center  rounded-lg items-center text-white text-s"><i class="fa fa-trash" aria-hidden="true"></i></button>
+          <button onclick="modifier_joueur('${Cardjoueur.id}')" class="bg-yellow-500 text-white px-3 py-1 rounded-lg">
+        <i class="fas fa-edit"></i>
+    </button>
           <button onclick="openPlayerList('${Cardjoueur.id}','${position}')
-          " id="change-button" class="flex bg-green-900 w-8 mt-0 rounded-lg justify-center text-white text-s"><i class="fas fa-edit"></i></button></div>
+          " id="change-button" class="flex bg-green-900 w-8 mt-0 rounded-lg justify-center text-white text-s"><i class="fa fa-plus" aria-hidden="true"></i></button></div>
          
         </div>
       </div>
@@ -312,11 +315,10 @@ function validateStat(statId) {
   }
   return value;
 }
-// --------------------------------------------------------------------------------------
-// suppresion des joueurs 
+// --------------------------------------------------------------------------------------suppresion des joueurs 
 
 window.supprimer_joueur = function (cardId) {
-  // Trouver la carte correspondante
+ e
   const card = document.getElementById(cardId);
   if (!card) {
       Alertperso(`Aucune carte trouvée avec l'ID : ${cardId}`);
@@ -585,10 +587,6 @@ carousel.addEventListener("mouseleave", () => {
 });
 
 // --------------------------------------------------------------------------------------------
-
-
-
-
 
 // fonction pour personnaliser alert 
 function Alertperso(message) {
