@@ -1,9 +1,6 @@
 
 ### **Ultimate Team Manager - EA FC 25 Squad Builder**
 
-Voici une version professionnelle de votre fichier **README.md** avec des icônes intégrées pour rendre le fichier plus attrayant et visuel.
-
----
 
 
 # 🌟 **Ultimate Team Manager - EA FC 25**
