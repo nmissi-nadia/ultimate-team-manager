@@ -74,6 +74,8 @@
               <option value="LB">Latéral Gauche (LB)</option>
               <option value="RB">Latéral Droit (RB)</option>
               <option value="CM">Milieu Central (CM)</option>
+              <option value="LM">Milieu Gauche (LB)</option>
+              <option value="RM">Milieu Droit (RB)</option>
               <option value="LW">Ailier Gauche (LW)</option>
               <option value="RW">Ailier Droit (RW)</option>
               <option value="ST">Attaquant (ST)</option>
@@ -276,21 +278,21 @@
     
 <h2 class="text-2xl font-semibold mb-4">Équipe</h2>
     <!-- Section Équipe -->
-     <section  class="grid grid-cols-1 md:grid-cols-4 gap-0 md:gap-4 w-full">
+     <section  class="grid grid-cols-1  md:grid-cols-4 gap-0 p-8 md:gap-4 w-full">
       
-        <div class="-ml-12 md:ml-0 bg-gray-800 md:w-full   md:col-span-3  md:pb-4 rounded-lg max-w-xl grid grid-rows-4 grid-cols-5 col-span-1 mt-16 h-screen gap-4 relative"  id="main">
+        <div class="-ml-12 md:ml-0 bg-gray-800 md:w-full md:-pb-[100px]  md:col-span-3 w-full  md:pb-4 rounded-lg sm:max-[500px] grid grid-rows-4 grid-cols-5 col-span-1 mt-16 h-screen gap-4 relative"  id="main">
           
   
         </div>
           
-        <div id="info" class="bg-gray-900 text-white p-6 mt-20 rounded-lg shadow-md w-[300px] sm:w-80 block col-span-4  md:block md:col-span-1 mb-10">
+        <div id="info" class="bg-gray-900 text-white p-6 mt-20 rounded-lg shadow-md w-[500px] sm:w-80 block col-span-4  md:block md:col-span-1 mb-10">
             <!-- Create Squad -->
             <div class="mb-6">
               <label for="search-team" class="block text-sm font-medium">Create Squad</label>
               <div class="relative mt-2">
                 <input id="search-team" type="text" placeholder="Squad name"
                   class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
-                <button onclick="affichersquadparnom(document.getElementById('search-team').value)"
+                <button id="search-team-btn"
                   class="absolute inset-y-0 right-2 flex items-center px-2 bg-gray-800 text-gray-400 rounded-lg focus:outline-none">
                   <i class="fas fa-search"></i>
                 </button>
@@ -341,7 +343,7 @@
             <div class="mt-4">
               <input id="team-name" type="text" placeholder="Nom de l'équipe" 
                      class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none" />
-              <button onclick="enregistreequipeformation(document.getElementById('team-name').value)"
+              <button id="save-team-btn"
                       class="mt-2 px-4 py-2 bg-green-500 text-white rounded-lg">
                   Enregistrer la formation
               </button>

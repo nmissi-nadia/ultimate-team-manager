@@ -121,7 +121,7 @@ function createPlayerCard(position, row, column,index) {
             <span class="block">Nom du joueur</span>
           </div>
           <!-- Player Stats -->
-          <div class="cards-stats sm:text-[5px] md:text-[6px] bg-[#e9cc74] lg:text-[7px] text-center mt-1 w-full">
+          <div class="cards-stats sm:text-[2px] md:text-[6px] bg-[#e9cc74] lg:text-[7px] text-center mt-1 w-full">
             ${
               position === "GK"
                 ? `DIV: --, HAN: --, KIC: --,<br> REF: --, SPD: --, POS: --`
@@ -129,15 +129,15 @@ function createPlayerCard(position, row, column,index) {
             }
           </div>
           <div class=" flex justify-between">
-          <button id="edit-button" onclick="supprimer_joueur('${Cardjoueur.id}')" class="flex bg-green-900 w-10 center mt-0 justify-self-center  rounded-lg items-center text-white text-s"><i class="fa fa-trash" aria-hidden="true"></i></button>
+          <button id="edit-button" onclick="supprimer_joueur('${Cardjoueur.id}')" class="flex bg-green-900 w-10 center mt-0 justify-center  rounded-lg items-center text-white text-s"><i class="fa fa-trash" aria-hidden="true"></i></button>
           <button onclick="openPlayerList('${Cardjoueur.id}','${position}')
-          " id="change-button" class="flex bg-green-900 w-8 mt-0 rounded-lg justify-self-center text-white text-s"><i class="fas fa-edit"></i></button></div>
+          " id="change-button" class="flex bg-green-900 w-8 mt-0 rounded-lg justify-center text-white text-s"><i class="fas fa-edit"></i></button></div>
          
         </div>
       </div>
     </div>
 
-    <div class="c rounded-xl w-8 h-7 bg-yellow-700 flex justify-self-center">
+    <div class="rounded-xl w-8 h-7 bg-yellow-700 flex justify-self-center">
       <p class="text-sm font-bold mx-auto">${position}</p>
     </div>
    
@@ -315,65 +315,87 @@ function validateStat(statId) {
 // --------------------------------------------------------------------------------------
 // suppresion des joueurs 
 
-function removePlayerFromCard(cardId) {
+window.supprimer_joueur = function (cardId) {
   // Trouver la carte correspondante
   const card = document.getElementById(cardId);
   if (!card) {
-      console.warn(`Aucune carte trouvée avec l'ID : ${cardId}`);
+      Alertperso(`Aucune carte trouvée avec l'ID : ${cardId}`);
       return;
   }
 
-  // Charger les données du localStorage
-  const savedFormation = JSON.parse(localStorage.getItem("formation")) || [];
   const reservePlayers = JSON.parse(localStorage.getItem("players")) || [];
 
-  // Retrouver le joueur associé à la carte
-  const formationIndex = savedFormation.findIndex((entry) => entry.position === cardId);
-  if (formationIndex === -1) {
-      console.warn(`Aucun joueur trouvé pour la position ${cardId} dans la formation.`);
+  const playerName = card.querySelector(".card-title span")?.textContent || "";
+  const playerPosition = cardId;
+
+  if (!playerName) {
+      Alertperso(`Aucun joueur trouvé pour la carte ${cardId}.`);
       return;
   }
 
-  // Récupérer le joueur supprimé
-  const removedPlayer = savedFormation[formationIndex].player;
+  const reserveIndex = reservePlayers.findIndex(
+      (player) => player.name === playerName && player.position === playerPosition
+  );
 
-  // Supprimer le joueur de la formation
-  savedFormation.splice(formationIndex, 1);
-  localStorage.setItem("formation", JSON.stringify(savedFormation));
-
-  // Supprimer définitivement le joueur de la réserve
-  const reserveIndex = reservePlayers.findIndex((player) => player.name === removedPlayer.name && player.position === removedPlayer.position);
   if (reserveIndex !== -1) {
       reservePlayers.splice(reserveIndex, 1);
-      localStorage.setItem("players", JSON.stringify(reservePlayers));
+      localStorage.setItem("players", JSON.stringify(reservePlayers)); 
+  } else {
+      Alertperso(`Joueur ${playerName} non trouvé dans la liste des réserves.`);
   }
-
-  // Réinitialiser visuellement la carte
   card.innerHTML = `
-      <div class="relative w-22 h-[170px] bg-[url('https://cdn.easysbc.io/fc25/cards/e_7_0.png')] bg-center bg-cover bg-no-repeat py-3 z-10">
-          <div class="relative flex text-[#e9cc74] px-1">
-              <div class="absolute text-[6px] font-light uppercase leading-3 py-1">
-                  <div class="text-xs">${cardId}</div>
-                  <img src="https://via.placeholder.com/20" alt="Pays" class="pyim object-contain w-6 h-6" />
-                  <img src="https://via.placeholder.com/20" alt="Club" class="club object-contain w-6 h-6" />
-              </div>
-              <div class="w-10 h-10 mx-auto overflow-hidden">
-                  <img src="https://via.placeholder.com/50" alt="Joueur" class="imjou object-contain" />
-              </div>
+      <div class="relative w-22 h-[170px] bg-[url('https://cdn.easysbc.io/fc25/cards/e_7_0.png')] bg-center bg-cover bg-no-repeat py-3 z-10 transition ease-in duration-200 sm:w-12 sm:h-[90px] md:w-20 md:h-[140px] lg:w-24 lg:h-[150px]">
+      <div class="relative flex text-[#e9cc74] px-1 sm:px-1 md:px-1 lg:px-2">
+        <!-- Player Master Info -->
+        <div class="absolute text-[6px] font-light uppercase leading-3 py-1 sm:py-1 md:py-1">
+          <div class="text-xs sm:text-[10px] md:text-xs lg:text-sm">${position || "POS"}</div>
+          <div class="w-2 h-1 mt-[1px] sm:w-1.5 sm:h-1.5 md:w-2 md:h-2">
+            <img src="https://via.placeholder.com/20" alt="Pays" class="pyim object-contain" />
           </div>
-          <div class="block text-black w-[90%] mx-auto py-[1px]">
-              <div class="card-title bg-[#e9cc74] text-center">
-                  <span>Position: ${cardId}</span>
-              </div>
-              <div class="cards-stats bg-[#e9cc74] text-center">Aucune statistique</div>
+          <div class="w-2 h-2.5 sm:w-1.5 sm:h-2 md:w-2 md:h-2.5">
+            <img src="https://via.placeholder.com/20" alt="Club" class="club object-contain" />
           </div>
+        </div>
+        <!-- Player Picture -->
+        <div class="w-10 h-10 mx-auto overflow-hidden sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12">
+          <img src="https://via.placeholder.com/50" alt="Joueur" class="imjou object-contain relative -right-1 sm:-right-0.5 md:-right-1 lg:-right-1.5" />
+        </div>
       </div>
+      <!-- Player Card Bottom -->
+      <div class="relative">
+        <div class="block text-black w-[90%] mx-auto py-[1px]">
+          <!-- Player Name -->
+          <div class="card-title block bg-[#e9cc74] text-center text-[6px] uppercase border-b border-opacity-10 border-[#e9cc74] pb-[1px] sm:text-[5px] md:text-[6px] lg:text-[7px]">
+            <span class="block">Nom du joueur</span>
+          </div>
+          <!-- Player Stats -->
+          <div class="cards-stats sm:text-[2px] md:text-[6px] bg-[#e9cc74] lg:text-[7px] text-center mt-1 w-full">
+            ${
+              position === "GK"
+                ? `DIV: --, HAN: --, KIC: --,<br> REF: --, SPD: --, POS: --`
+                : `PAC: --, SHO: --, PAS: --,<br> DRI: --, DEF: --, PHY: --`
+            }
+          </div>
+          <div class=" flex justify-between">
+          <button id="edit-button" onclick="supprimer_joueur('${Cardjoueur.id}')" class="flex bg-green-900 w-10 center mt-0 justify-center  rounded-lg items-center text-white text-s"><i class="fa fa-trash" aria-hidden="true"></i></button>
+          <button onclick="openPlayerList('${Cardjoueur.id}','${position}')
+          " id="change-button" class="flex bg-green-900 w-8 mt-0 rounded-lg justify-center text-white text-s"><i class="fas fa-edit"></i></button></div>
+         
+        </div>
+      </div>
+    </div>
+
+    <div class="rounded-xl w-8 h-7 bg-yellow-700 flex justify-self-center">
+      <p class="text-sm font-bold mx-auto">${position}</p>
+    </div>
+   
   `;
 
-  console.log(`Joueur supprimé définitivement de la carte ${cardId}, de la formation, et de la réserve.`);
-}
+  console.log(`Joueur supprimé définitivement de la carte ${cardId} et de la réserve.`);
+};
 
 
+// -----------------------------------------------------------------------Modal des joueurs en reserve de meme poste 
 
   // const players = JSON.parse(localStorage.getItem("players")) || [];
 // Création du modal de la liste des joueurs
@@ -449,7 +471,7 @@ console.log(position)
     </div>
       `;
       listItem.addEventListener("click", () => {
-        updateCardWithPlayer(id, player); // Appeler la fonction de mise à jour
+        changejoueur(id, player); // Appeler la fonction de mise à jour
         modal.classList.add("hidden");
       });
       playerList.appendChild(listItem);
@@ -463,17 +485,19 @@ console.log(position)
 // pour fermer le modal
 closePlayerList.addEventListener("click", () => {
   playerListModal.classList.add("hidden");
+
 });
-function updateCardWithPlayer(id, player) {
-  const card = document.getElementById(id); // Trouver la carte correspondante
+// ---------------------------------------------------------------------------------------------------------------------------change a player 
+function changejoueur(id, player) {
+  const card = document.getElementById(id);
   if (!card) return;
 
-  const cardImagecountry = card.querySelector(".pyim"); // Image du country
-  const cardImageclub = card.querySelector(".club"); // Image du club
-  const cardImagejoue = card.querySelector(".imjou"); // Image du joueur
-  const cardTitle = card.querySelector(".card-title"); // Nom du joueur
+  const cardImagecountry = card.querySelector(".pyim");
+  const cardImageclub = card.querySelector(".club");
+  const cardImagejoue = card.querySelector(".imjou");
+  const cardTitle = card.querySelector(".card-title");
   const name =cardTitle.querySelector("span");
-  const cardStats = card.querySelector(".cards-stats"); // Statistiques du joueur
+  const cardStats = card.querySelector(".cards-stats");
 
   // Mettre à jour les données de la carte
   if (cardImagecountry) cardImagecountry.src = player.country || "https://via.placeholder.com/20";
@@ -488,11 +512,12 @@ function updateCardWithPlayer(id, player) {
   }
 }
 
+
 // Fonction pour fermer le modal
 closePlayerList.addEventListener("click", () => {
   playerListModal.classList.add("hidden");
 });
-
+// --------------------------------------------joueures en reseve--------------------------------------------
 // Charger les joueurs dans la réserve
 function loadReservePlayers() {
   const reserve = document.getElementById("reserve");
@@ -546,197 +571,10 @@ function loadReservePlayers() {
   });
 }
 
-loadReservePlayers(); // Charger les joueurs au démarrage
-
-
-// -------------------------------------------------------------------------------------------
-// pour l'affichage des squad enregistre
-function affichagesquadformation() {
-  const teams = JSON.parse(localStorage.getItem("teams")) || [];
-  const container = document.getElementById("saved-teams");
-  container.innerHTML = ""; // Réinitialiser l'affichage
-
-  if (teams.length === 0) {
-      container.innerHTML = "<p>Aucune équipe sauvegardée.</p>";
-      return;
-  }
-
-  teams.forEach(team => {
-      const teamElement = document.createElement("div");
-      teamElement.className = "team-card border rounded-lg p-4 mb-4 bg-gray-100";
-
-      teamElement.innerHTML = `
-          <h3 class="text-lg font-bold mb-2">${team.teamName}</h3>
-          <div class="grid grid-cols-4 gap-2">
-              ${team.formation.map(f => `
-                  <div class="player-card text-center">
-                      <img src="${f.player.image}" alt="${f.player.name}" 
-                           class="h-12 w-12 mx-auto rounded-full" />
-                      <p class="text-sm">${f.player.name}</p>
-                      <p class="text-xs text-gray-400">${f.position}</p>
-                  </div>
-              `).join("")}
-          </div>
-      `;
-      container.appendChild(teamElement);
-  });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  affichagesquadformation();
-});
-
-// enregistrement des equipe
-function enregistreequipeformation(teamName) {
-  const formation = [];
-
-  // Parcourir toutes les cartes sur le terrain
-  const cards = document.querySelectorAll(".card");
-  cards.forEach((card) => {
-      const position = card.id; // ID de la carte (ex. "GK-1", "CB-2")
-      const playerName = card.querySelector(".card-title span") ?.textContent;
-      const playerImage = card.querySelector(".imgjou")?.src; 
-      const playercountry = card.querySelector("pyim")?.src;
-      const playerclub = card.querySelector("club")?.src; 
-      const playerStats = card.querySelector(".cards-stats")?.textContent || "";
-
-      // Vérifier si le joueur existe sur cette carte
-      if (playerName) {
-          formation.push({
-              position, 
-              player: {
-                  name: playerName,
-                  image: playerImage,
-                  country:playercountry,
-                  club:playerclub,
-                  stats: playerStats,
-              }
-          });
-      }
-  });
-
-  // Validation
-  if (!teamName || formation.length === 0) {
-    Alertperso("Veuillez donner un nom à l'équipe et compléter la formation.");
-      return;
-  }
-
-  // Sauvegarder dans localStorage
-  let teams = JSON.parse(localStorage.getItem("teams")) || [];
-  teams.push({ teamName, formation }); // Ajouter la formation
-  localStorage.setItem("teams", JSON.stringify(teams)); // Sauvegarder
-  Alertperso("Formation enregistrée avec succès !");
-}
-
-
-
-
-// la fonction pour rechercher une equipe et l'afficher dans le stade
-function affichersquadparnom(teamName) {
-  // Charger les formations existantes
-  const teams = JSON.parse(localStorage.getItem("teams")) || [];
-  const team = teams.find(t => t.teamName.toLowerCase() === teamName.toLowerCase());
-
-  if (!team) {
-    Alertperso("Aucune formation trouvée pour cette équipe.");
-      return;
-  }
-
-  // Vider le terrain avant d'afficher la formation
-  const field = document.getElementById("main");
-  field.innerHTML = "";
-
-  // Afficher la formation sur le terrain
-  team.formation.forEach(({ position, player }) => {
-      const playerCard = document.createElement("div");
-      playerCard.id = position;
-      playerCard.className = "card mx-auto bg-transparent p-4 rounded-lg  relative z-2";
-
-      playerCard.innerHTML = `
-          <div class="relative w-22 h-[170px] bg-[url('https://cdn.easysbc.io/fc25/cards/e_7_0.png')] bg-center bg-cover bg-no-repeat py-3 z-10 transition ease-in duration-200 sm:w-20 sm:h-[140px] md:w-20 md:h-[140px] lg:w-24 lg:h-[150px]">
-      <div class="relative flex text-[#e9cc74] px-1 sm:px-1 md:px-1 lg:px-2">
-        <!-- Player Master Info -->
-        <div class="absolute text-[6px] font-light uppercase leading-3 py-1 sm:py-1 md:py-1">
-          <div class="text-xs sm:text-[10px] md:text-xs lg:text-sm">${player.position}</div>
-          <div class="w-2 h-1 mt-[1px] sm:w-1.5 sm:h-1.5 md:w-2 md:h-2">
-            <img src="${player.country}" alt="Pays" class="object-contain" />
-          </div>
-          <div class="w-2 h-2.5 sm:w-1.5 sm:h-2 md:w-2 md:h-2.5">
-            <img src="${player.club}" alt="Club" class="object-contain" />
-          </div>
-        </div>
-        <!-- Player Picture -->
-        <div class="w-10 h-10 mx-auto overflow-hidden sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12">
-          <img src="${player.image}" alt="Joueur" class="object-contain relative -right-1 sm:-right-0.5 md:-right-1 lg:-right-1.5" />
-        </div>
-      </div>
-      <!-- Player Card Bottom -->
-       <div class="relative">
-          <div class="block text-black w-[90%] mx-auto py-[1px]">
-            <div class="block card-title bg-[#e9cc74] text-center text-[6px] uppercase border-b border-opacity-10 border-[#e9cc74] pb-[1px] sm:text-[5px] md:text-[6px] lg:text-[7px]">
-              <span class="block">${player.name}</span>
-            </div>
-            <div class="cards-stats sm:text-[5px] bg-[#e9cc74] md:text-[6px] lg:text-[7px] text-center mt-1 w-full font-light">
-              ${
-                player.position === "GK"
-                  ? `DIV: ${player.stats.diving}, HAN: ${player.stats.handling}, KIC: ${player.stats.kicking}, REF: ${player.stats.reflexes}, SPD: ${player.stats.speed}, POS: ${player.stats.positioning}`
-                  : `PAC: ${player.stats.pace}, SHO: ${player.stats.shooting}, PAS: ${player.stats.passing}, DRI: ${player.stats.dribbling}, DEF: ${player.stats.defending}, PHY: ${player.stats.physical}`
-              }
-            </div>
-          </div>
-        </div>
-    </div>
-      `;
-
-      // Positionner la carte sur le terrain
-      const [row, col] = position.split("-"); // Exemple : "GK-1" -> ["GK", "1"]
-      playerCard.style.gridRow = row;
-      playerCard.style.gridColumn = col;
-
-      field.appendChild(playerCard);
-  });
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+loadReservePlayers(); 
 
 });
-
+// ---------------------------------carrousel des joueurs en reserver------------------------
 // pour le mv de cards des joueurs en reserve
 const carousel = document.getElementById("reserve");
 carousel.addEventListener("mouseenter", () => {
@@ -754,15 +592,10 @@ carousel.addEventListener("mouseleave", () => {
 
 // fonction pour personnaliser alert 
 function Alertperso(message) {
-  // Vérifier si une alerte est déjà affichée
   if (document.getElementById("custom-alert-box")) return;
-
-  // Créer l'élément de la boîte d'alerte
   const alertBox = document.createElement("div");
   alertBox.id = "custom-alert-box";
   alertBox.className = "fixed inset-0 flex items-center justify-center bg-black bg-opacity-50";
-
-  // Contenu de la boîte d'alerte
   alertBox.innerHTML = `
       <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 rounded-lg shadow-lg w-80 p-4 text-center">
           <p class="text-gray-800 text-lg font-semibold mb-4">${message}</p>
