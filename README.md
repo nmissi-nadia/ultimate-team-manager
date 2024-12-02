@@ -5,7 +5,7 @@
 
 # 🌟 **Ultimate Team Manager - EA FC 25**
 
-![Ultimate Team Manager Logo](https://via.placeholder.com/300x100)  
+
 _Gérez et personnalisez votre équipe avec des fonctionnalités interactives_
 
 ---
@@ -102,7 +102,7 @@ _Gérez et personnalisez votre équipe avec des fonctionnalités interactives_
 ## 📸 **Aperçu**
 
 ### Interface de gestion
-![Aperçu du terrain](https://via.placeholder.com/800x400)
+![Aperçu du terrain](/assets/imgs/image.png)
 
 ---
 

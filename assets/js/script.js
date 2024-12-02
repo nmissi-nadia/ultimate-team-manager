@@ -306,6 +306,8 @@ playerForm.addEventListener("submit", (event) => {
   Alertperso("Joueur ajouté avec succès !");
 });
 
+
+
 // pour validation des statistiques des joueurs 
 function validateStat(statId) {
   const value = parseInt(document.getElementById(statId).value.trim(), 10);
@@ -315,6 +317,10 @@ function validateStat(statId) {
   }
   return value;
 }
+
+
+
+
 // --------------------------------------------------------------------------------------suppresion des joueurs 
 
 window.supprimer_joueur = function (cardId) {
@@ -399,14 +405,12 @@ window.supprimer_joueur = function (cardId) {
 };
 // -------------------------------------------------------------  Modification d'un joueur
 window.modifier_joueur = function (cardId) {
-  // Trouver la carte correspondante
+
   const card = document.getElementById(cardId);
   if (!card) {
       console.warn(`Aucune carte trouvée avec l'ID : ${cardId}`);
       return;
   }
-
-  // Récupérer les informations actuelles du joueur
   const playerName = card.querySelector(".card-title span")?.textContent || "";
   const playerPosition = card.id;
   const playerCountry = card.querySelector(".pyim")?.src || "";
@@ -414,7 +418,6 @@ window.modifier_joueur = function (cardId) {
   const playerImage = card.querySelector(".imjou")?.src || "";
   const playerStats = card.querySelector(".cards-stats")?.textContent || "";
 
-  // Associer les champs du modal
   const modal = document.getElementById("pop_up_ajoute");
   const nameInput = document.getElementById("playerName");
   const positionSelect = document.getElementById("player-position");
@@ -488,7 +491,6 @@ window.modifier_joueur = function (cardId) {
           .join(", ");
       card.querySelector(".cards-stats").textContent = updatedStats;
 
-      // Mettre à jour dans localStorage
       const players = JSON.parse(localStorage.getItem("players")) || [];
       const playerIndex = players.findIndex((player) => player.name === playerName && player.position === playerPosition);
 
@@ -536,14 +538,12 @@ window.openPlayerList = function(id,position) {
   const modal = document.getElementById("playerListModal");
   const playerList = document.getElementById("playerList");
   
-console.log(position)
+// console.log(position)
 
   const players = JSON.parse(localStorage.getItem("players")) || [];
 
-  // Filtrer les joueurs par position
   const filteredPlayers = players.filter(players => players.position === position);
 
-  // Réinitialiser le contenu du modal
   playerList.innerHTML = "";
 
   if (filteredPlayers.length === 0) {
