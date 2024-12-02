@@ -315,6 +315,63 @@ function validateStat(statId) {
 // --------------------------------------------------------------------------------------
 // suppresion des joueurs 
 
+function removePlayerFromCard(cardId) {
+  // Trouver la carte correspondante
+  const card = document.getElementById(cardId);
+  if (!card) {
+      console.warn(`Aucune carte trouvée avec l'ID : ${cardId}`);
+      return;
+  }
+
+  // Charger les données du localStorage
+  const savedFormation = JSON.parse(localStorage.getItem("formation")) || [];
+  const reservePlayers = JSON.parse(localStorage.getItem("players")) || [];
+
+  // Retrouver le joueur associé à la carte
+  const formationIndex = savedFormation.findIndex((entry) => entry.position === cardId);
+  if (formationIndex === -1) {
+      console.warn(`Aucun joueur trouvé pour la position ${cardId} dans la formation.`);
+      return;
+  }
+
+  // Récupérer le joueur supprimé
+  const removedPlayer = savedFormation[formationIndex].player;
+
+  // Supprimer le joueur de la formation
+  savedFormation.splice(formationIndex, 1);
+  localStorage.setItem("formation", JSON.stringify(savedFormation));
+
+  // Supprimer définitivement le joueur de la réserve
+  const reserveIndex = reservePlayers.findIndex((player) => player.name === removedPlayer.name && player.position === removedPlayer.position);
+  if (reserveIndex !== -1) {
+      reservePlayers.splice(reserveIndex, 1);
+      localStorage.setItem("players", JSON.stringify(reservePlayers));
+  }
+
+  // Réinitialiser visuellement la carte
+  card.innerHTML = `
+      <div class="relative w-22 h-[170px] bg-[url('https://cdn.easysbc.io/fc25/cards/e_7_0.png')] bg-center bg-cover bg-no-repeat py-3 z-10">
+          <div class="relative flex text-[#e9cc74] px-1">
+              <div class="absolute text-[6px] font-light uppercase leading-3 py-1">
+                  <div class="text-xs">${cardId}</div>
+                  <img src="https://via.placeholder.com/20" alt="Pays" class="pyim object-contain w-6 h-6" />
+                  <img src="https://via.placeholder.com/20" alt="Club" class="club object-contain w-6 h-6" />
+              </div>
+              <div class="w-10 h-10 mx-auto overflow-hidden">
+                  <img src="https://via.placeholder.com/50" alt="Joueur" class="imjou object-contain" />
+              </div>
+          </div>
+          <div class="block text-black w-[90%] mx-auto py-[1px]">
+              <div class="card-title bg-[#e9cc74] text-center">
+                  <span>Position: ${cardId}</span>
+              </div>
+              <div class="cards-stats bg-[#e9cc74] text-center">Aucune statistique</div>
+          </div>
+      </div>
+  `;
+
+  console.log(`Joueur supprimé définitivement de la carte ${cardId}, de la formation, et de la réserve.`);
+}
 
 
 
