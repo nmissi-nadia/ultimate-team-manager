@@ -697,7 +697,30 @@ function affichersquadparnom(teamName) {
   });
 }
 
+// -------------------------------------prtrait ---> paysage-----------------
+function adjustOrientation() {
+  const body = document.body;
 
+  if (window.innerWidth > 700) {
+      body.classList.add("rotate-90", "bg-blue-500");
+      body.classList.remove("bg-green-500");
+      body.style.transformOrigin = "left top";
+      body.style.height = `${window.innerWidth}px`;
+      body.style.width = `${window.innerHeight}px`;
+  } else {
+      body.classList.remove("rotate-90", "bg-blue-500");
+      body.classList.add("bg-green-500");
+      body.style.transformOrigin = "";
+      body.style.height = "";
+      body.style.width = "";
+  }
+}
+
+// Écoutez les changements de taille de l'écran
+window.addEventListener("resize", adjustOrientation);
+
+// Appliquez les ajustements dès le chargement
+adjustOrientation();
 
 
 
