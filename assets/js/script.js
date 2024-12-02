@@ -378,10 +378,12 @@ window.supprimer_joueur = function (cardId) {
                 : `PAC: --, SHO: --, PAS: --,<br> DRI: --, DEF: --, PHY: --`
             }
           </div>
-          <div class=" flex justify-between">
-          <button id="edit-button" onclick="supprimer_joueur('${Cardjoueur.id}')" class="flex bg-green-900 w-10 center mt-0 justify-center  rounded-lg items-center text-white text-s"><i class="fa fa-trash" aria-hidden="true"></i></button>
-          <button onclick="openPlayerList('${Cardjoueur.id}','${position}')
-          " id="change-button" class="flex bg-green-900 w-8 mt-0 rounded-lg justify-center text-white text-s"><i class="fas fa-edit"></i></button></div>
+            <div class=" flex justify-between">
+                <button id="edit-button" onclick="supprimer_joueur('${Cardjoueur.id}')" class="flex bg-green-900 w-10 center mt-0 justify-center  rounded-lg items-center text-white text-s"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                <button onclick="modifier_joueur('${Cardjoueur.id}')" class="bg-yellow-500 text-white px-3 py-1 rounded-lg">
+              <i class="fas fa-edit"></i></button>
+                <button onclick="openPlayerList('${Cardjoueur.id}','${position}')
+                " id="change-button" class="flex bg-green-900 w-8 mt-0 rounded-lg justify-center text-white text-s"><i class="fa fa-plus" aria-hidden="true"></i></button></div>
          
         </div>
       </div>
@@ -395,6 +397,119 @@ window.supprimer_joueur = function (cardId) {
 
   console.log(`Joueur supprimé définitivement de la carte ${cardId} et de la réserve.`);
 };
+// -------------------------------------------------------------  Modification d'un joueur
+window.modifier_joueur = function (cardId) {
+  // Trouver la carte correspondante
+  const card = document.getElementById(cardId);
+  if (!card) {
+      console.warn(`Aucune carte trouvée avec l'ID : ${cardId}`);
+      return;
+  }
+
+  // Récupérer les informations actuelles du joueur
+  const playerName = card.querySelector(".card-title span")?.textContent || "";
+  const playerPosition = card.id;
+  const playerCountry = card.querySelector(".pyim")?.src || "";
+  const playerClub = card.querySelector(".club")?.src || "";
+  const playerImage = card.querySelector(".imjou")?.src || "";
+  const playerStats = card.querySelector(".cards-stats")?.textContent || "";
+
+  // Associer les champs du modal
+  const modal = document.getElementById("pop_up_ajoute");
+  const nameInput = document.getElementById("playerName");
+  const positionSelect = document.getElementById("player-position");
+  const countrySelect = document.getElementById("player-country");
+  const clubSelect = document.getElementById("player-club");
+  const photoSelect = document.getElementById("photosrc");
+
+  if (!modal || !nameInput || !positionSelect || !countrySelect || !clubSelect || !photoSelect) {
+      console.error("Un ou plusieurs champs du modal sont introuvables !");
+      return;
+  }
+
+  // Pré-remplir les champs du modal avec les données existantes
+  nameInput.value = playerName;
+  positionSelect.value = playerPosition;
+  countrySelect.value = playerCountry;
+  clubSelect.value = playerClub;
+  photoSelect.value = playerImage;
+
+  // Gérer les statistiques dynamiques (joueur ou gardien)
+  const statsDiv = document.getElementById(playerPosition === "GK" ? "stats_GK" : "stats_joue");
+  const otherStatsDiv = document.getElementById(playerPosition === "GK" ? "stats_joue" : "stats_GK");
+  statsDiv.classList.remove("hidden");
+  otherStatsDiv.classList.add("hidden");
+
+  // Remplir les champs des statistiques si disponibles
+  if (playerStats) {
+      const stats = playerStats.split(", ");
+      stats.forEach((stat) => {
+          const [key, value] = stat.split(":");
+          const statInput = document.getElementById(key.trim().toLowerCase());
+          if (statInput) {
+              statInput.value = value.trim();
+          }
+      });
+  }
+
+  // Afficher le modal
+  modal.classList.remove("hidden");
+
+  // Gérer le bouton "Fermer"
+  document.getElementById("closeButton").onclick = () => {
+      modal.classList.add("hidden");
+  };
+
+  // Gérer l'enregistrement des modifications
+  document.getElementById("btnajout").onclick = (e) => {
+      e.preventDefault();
+
+      // Récupérer les données modifiées
+      const updatedName = nameInput.value.trim();
+      const updatedPosition = positionSelect.value;
+      const updatedCountry = countrySelect.value;
+      const updatedClub = clubSelect.value;
+      const updatedPhoto = photoSelect.value;
+
+      if (!updatedName || !updatedPosition || !updatedCountry || !updatedClub || !updatedPhoto) {
+          alert("Tous les champs doivent être remplis.");
+          return;
+      }
+
+      // Mettre à jour la carte
+      card.querySelector(".card-title span").textContent = updatedName;
+      card.querySelector(".pyim").src = updatedCountry;
+      card.querySelector(".club").src = updatedClub;
+      card.querySelector(".imjou").src = updatedPhoto;
+
+      // Mettre à jour les statistiques dans la carte
+      const updatedStats = Array.from(statsDiv.querySelectorAll("input"))
+          .map((input) => `${input.id.toUpperCase()}: ${input.value}`)
+          .join(", ");
+      card.querySelector(".cards-stats").textContent = updatedStats;
+
+      // Mettre à jour dans localStorage
+      const players = JSON.parse(localStorage.getItem("players")) || [];
+      const playerIndex = players.findIndex((player) => player.name === playerName && player.position === playerPosition);
+
+      if (playerIndex !== -1) {
+          players[playerIndex] = {
+              name: updatedName,
+              position: updatedPosition,
+              country: updatedCountry,
+              club: updatedClub,
+              image: updatedPhoto,
+              stats: updatedStats,
+          };
+          localStorage.setItem("players", JSON.stringify(players));
+      }
+
+      // Masquer le modal
+      modal.classList.add("hidden");
+      alert("Les informations du joueur ont été mises à jour avec succès !");
+  };
+};
+
 
 
 // -----------------------------------------------------------------------Modal des joueurs en reserve de meme poste 
