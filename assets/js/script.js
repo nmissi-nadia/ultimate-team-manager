@@ -137,7 +137,7 @@ function createPlayerCard(position, row, column,index) {
       <div class="relative">
         <div class="block text-black w-[90%] mx-auto py-[1px]">
           <!-- Player Name -->
-          <div class="card-title block text-center text-[6px] uppercase border-b border-opacity-10 border-[#e9cc74] pb-[1px] sm:text-[5px] md:text-[6px] lg:text-[7px]">
+          <div class="card-title block bg-[#e9cc74] text-center text-[6px] uppercase border-b border-opacity-10 border-[#e9cc74] pb-[1px] sm:text-[5px] md:text-[6px] lg:text-[7px]">
             <span class="block">Nom du joueur</span>
           </div>
           <!-- Player Stats -->
@@ -148,9 +148,10 @@ function createPlayerCard(position, row, column,index) {
                 : `PAC: --, SHO: --, PAS: --,<br> DRI: --, DEF: --, PHY: --`
             }
           </div>
-          <button id="edit-button" class="flex bg-green-900 w-16 mt-0 justify-self-center  rounded-lg items-center text-white text-s"><i class="fa fa-trash" aria-hidden="true"></i></button>
+          <div class=" flex justify-between"><button id="edit-button" class="flex bg-green-900 w-10 center mt-0 justify-self-center  rounded-lg items-center text-white text-s"><i class="fa fa-trash" aria-hidden="true"></i></button>
           <button onclick="openPlayerList('${playerCard.id}','${position}')
-          " id="change-button" class="flex bg-green-900 w-16 mt-0 rounded-lg justify-self-center text-white text-s"><i class="fas fa-edit"></i></button>
+          " id="change-button" class="flex bg-green-900 w-8 mt-0 rounded-lg justify-self-center text-white text-s"><i class="fas fa-edit"></i></button></div>
+         
         </div>
       </div>
     </div>
@@ -283,70 +284,91 @@ let currentCardId = null;
 // Stocker les informations dans le Local Storage
 playerForm.addEventListener("submit", (event) => {
   event.preventDefault();
-
-  const playerName = document.getElementById("playerName").value;
-  const playerClub = document.getElementById("player-club").value;
-  const playerCountry = document.getElementById("player-country").value;
-  const playerimage = document.getElementById("photosrc").value;
+  const playerName = document.getElementById("playerName").value.trim();
+  const playerClub = document.getElementById("player-club").value.trim();
+  const playerCountry = document.getElementById("player-country").value.trim();
+  const playerImage = document.getElementById("photosrc").value.trim();
   const position = playerPosition.value;
 
-  // Validation de base
-if (!playerName || !playerClub || !playerCountry || !playerimage) {
-  alert("Veuillez remplir tous les champs obligatoires.");
-  return;
-}
+  if (!playerName) {
+    Alertperso("Le nom du joueur est obligatoire.");
+    return;
+  }
 
+  if (!playerClub) {
+    Alertperso("Veuillez sélectionner un club.");
+    return;
+  }
+
+  if (!playerCountry) {
+    Alertperso("Veuillez sélectionner un pays.");
+    return;
+  }
+
+  if (!playerImage) {
+    Alertperso("Veuillez choisir une image pour le joueur.");
+    return;
+  }
+
+  if (!position) {
+    Alertperso("Veuillez choisir une position.");
+    return;
+  }
   let playerData = {
-    id:players.length + 1,
+    id: players.length + 1,
     name: playerName,
     club: playerClub,
     country: playerCountry,
-    image:playerimage,
+    image: playerImage,
     position: position,
   };
-
-  // Ajouter les statistiques spécifiques en fonction de la position
   if (position === "GK") {
     playerData.stats = {
-      diving: document.getElementById("diving").value,
-      handling: document.getElementById("handling").value,
-      kicking: document.getElementById("kicking").value,
-      reflexes: document.getElementById("reflexes").value,
-      speed: document.getElementById("speed").value,
-      positioning: document.getElementById("positioning").value,
+      diving: validateStat("diving"),
+      handling: validateStat("handling"),
+      kicking: validateStat("kicking"),
+      reflexes: validateStat("reflexes"),
+      speed: validateStat("speed"),
+      positioning: validateStat("positioning"),
     };
   } else {
     playerData.stats = {
-      pace: document.getElementById("pace").value,
-      shooting: document.getElementById("shooting").value,
-      passing: document.getElementById("passing").value,
-      dribbling: document.getElementById("dribbling").value,
-      defending: document.getElementById("defending").value,
-      physical: document.getElementById("physical").value,
+      pace: validateStat("pace"),
+      shooting: validateStat("shooting"),
+      passing: validateStat("passing"),
+      dribbling: validateStat("dribbling"),
+      defending: validateStat("defending"),
+      physical: validateStat("physical"),
     };
   }
-// Enregistrer les données dans le Local Storage
 
+  const existingPlayer = players.find(
+    (p) => p.name === playerName && p.position === position
+  );
+  if (existingPlayer) {
+    Alertperso("Ce joueur existe déjà dans votre équipe.");
+    return;
+  }
+  players.push(playerData);
+  localStorage.setItem("players", JSON.stringify(players));
+  playerForm.reset();
+  document.getElementById("pop_up_ajoute").classList.add("hidden");
+  statsJoue.classList.remove("hidden");
+  statsGK.classList.add("hidden");
 
-// Vérifier si le joueur existe déjà
-const existingPlayer = players.find(
-  (p) => p.name === playerName && p.position === position
-);
+  Alertperso("Joueur ajouté avec succès !");
+});
 
-if (existingPlayer) {
-  alert("Ce joueur existe déjà dans votre équipe.");
-  return;
+// pour validation des statistiques des joueurs 
+function validateStat(statId) {
+  const value = parseInt(document.getElementById(statId).value.trim(), 10);
+  if (isNaN(value) || value < 0 || value > 99) {
+    Alertperso(`La statistique ${statId} doit être un nombre entre 0 et 99.`);
+    throw new Error(`Statistique invalide pour ${statId}`);
+  }
+  return value;
 }
 
-// Ajouter le joueur si unique
-players.push(playerData);
-localStorage.setItem("players", JSON.stringify(players));
-
-    playerForm.reset();
-    document.getElementById("pop_up_ajoute").classList.add("hidden");
-    statsJoue.classList.remove("hidden");
-    statsGK.classList.add("hidden");
-  });
 
 
 
@@ -409,10 +431,10 @@ console.log(position)
       <!-- Player Card Bottom -->
        <div class="relative">
           <div class="block text-black w-[90%] mx-auto py-[1px]">
-            <div class="block text-center text-[6px] uppercase border-b border-opacity-10 border-[#e9cc74] pb-[1px] sm:text-[5px] md:text-[6px] lg:text-[7px]">
-              <span class="card-title block">${player.name}</span>
+            <div class="card-title bg-[#e9cc74] block text-center text-[6px] uppercase border-b border-opacity-10 border-[#e9cc74] pb-[1px] sm:text-[5px] md:text-[6px] lg:text-[7px]">
+              <span class="block">${player.name}</span>
             </div>
-            <div class="cards-stats sm:text-[5px] md:text-[6px] lg:text-[7px] text-center mt-1 w-full font-light">
+            <div class="cards-stats sm:text-[5px] bg-[#e9cc74] md:text-[6px] lg:text-[7px] text-center mt-1 w-full font-light">
               ${
                 player.position === "GK"
                   ? `DIV: ${player.stats.diving}, HAN: ${player.stats.handling}, KIC: ${player.stats.kicking}, REF: ${player.stats.reflexes}, SPD: ${player.stats.speed}, POS: ${player.stats.positioning}`
@@ -482,7 +504,7 @@ function loadReservePlayers() {
     playerCard.innerHTML = ""
     playerCard.innerHTML = `
       
-      <div class="relative w-22 h-[170px] bg-[url('https://cdn.easysbc.io/fc25/cards/e_7_0.png')] bg-center bg-cover bg-no-repeat py-3 z-10 transition ease-in duration-200 sm:w-12 sm:h-[90px] md:w-20 md:h-[140px] lg:w-24 lg:h-[150px]">
+      <div class="relative w-22 h-[170px] bg-[url('https://cdn.easysbc.io/fc25/cards/e_7_0.png')] bg-center bg-cover bg-no-repeat py-3 z-10 transition ease-in duration-200 sm:w-20 sm:h-[140px] md:w-20 md:h-[140px] lg:w-24 lg:h-[150px]">
       <div class="relative flex text-[#e9cc74] px-1 sm:px-1 md:px-1 lg:px-2">
         <!-- Player Master Info -->
         <div class="absolute text-[6px] font-light uppercase leading-3 py-1 sm:py-1 md:py-1">
@@ -502,10 +524,10 @@ function loadReservePlayers() {
       <!-- Player Card Bottom -->
        <div class="relative">
           <div class="block text-black w-[90%] mx-auto py-[1px]">
-            <div class="block text-center text-[6px] uppercase border-b border-opacity-10 border-[#e9cc74] pb-[1px] sm:text-[5px] md:text-[6px] lg:text-[7px]">
-              <span class="card-title block">${player.name}</span>
+            <div class="block card-title bg-[#e9cc74] text-center text-[6px] uppercase border-b border-opacity-10 border-[#e9cc74] pb-[1px] sm:text-[5px] md:text-[6px] lg:text-[7px]">
+              <span class="block">${player.name}</span>
             </div>
-            <div class="cards-stats sm:text-[5px] md:text-[6px] lg:text-[7px] text-center mt-1 w-full font-light">
+            <div class="cards-stats sm:text-[5px] bg-[#e9cc74] md:text-[6px] lg:text-[7px] text-center mt-1 w-full font-light">
               ${
                 player.position === "GK"
                   ? `DIV: ${player.stats.diving}, HAN: ${player.stats.handling}, KIC: ${player.stats.kicking}, REF: ${player.stats.reflexes}, SPD: ${player.stats.speed}, POS: ${player.stats.positioning}`
@@ -524,7 +546,153 @@ function loadReservePlayers() {
 loadReservePlayers(); // Charger les joueurs au démarrage
 
 
+// -------------------------------------------------------------------------------------------
+// pour l'affichage des squad enregistre
+function affichagesquadformation() {
+  const teams = JSON.parse(localStorage.getItem("teams")) || [];
+  const container = document.getElementById("saved-teams");
+  container.innerHTML = ""; // Réinitialiser l'affichage
 
+  if (teams.length === 0) {
+      container.innerHTML = "<p>Aucune équipe sauvegardée.</p>";
+      return;
+  }
+
+  teams.forEach(team => {
+      const teamElement = document.createElement("div");
+      teamElement.className = "team-card border rounded-lg p-4 mb-4 bg-gray-100";
+
+      teamElement.innerHTML = `
+          <h3 class="text-lg font-bold mb-2">${team.teamName}</h3>
+          <div class="grid grid-cols-4 gap-2">
+              ${team.formation.map(f => `
+                  <div class="player-card text-center">
+                      <img src="${f.player.image}" alt="${f.player.name}" 
+                           class="h-12 w-12 mx-auto rounded-full" />
+                      <p class="text-sm">${f.player.name}</p>
+                      <p class="text-xs text-gray-400">${f.position}</p>
+                  </div>
+              `).join("")}
+          </div>
+      `;
+      container.appendChild(teamElement);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  affichagesquadformation();
+});
+
+// enregistrement des equipe
+function enregistreequipeformation(teamName) {
+  const formation = [];
+
+  // Parcourir toutes les cartes sur le terrain
+  const cards = document.querySelectorAll(".card");
+  cards.forEach((card) => {
+      const position = card.id; // ID de la carte (ex. "GK-1", "CB-2")
+      const playerName = card.querySelector(".card-title span") ?.textContent;
+      const playerImage = card.querySelector(".imgjou")?.src; 
+      const playercountry = card.querySelector("pyim")?.src;
+      const playerclub = card.querySelector("club")?.src; 
+      const playerStats = card.querySelector(".cards-stats")?.textContent || "";
+
+      // Vérifier si le joueur existe sur cette carte
+      if (playerName) {
+          formation.push({
+              position, // Position sur le terrain (ex. "GK-1")
+              player: {
+                  name: playerName,
+                  image: playerImage,
+                  country:playercountry,
+                  club:playerclub,
+                  stats: playerStats,
+              }
+          });
+      }
+  });
+
+  // Validation
+  if (!teamName || formation.length === 0) {
+    Alertperso("Veuillez donner un nom à l'équipe et compléter la formation.");
+      return;
+  }
+
+  // Sauvegarder dans localStorage
+  let teams = JSON.parse(localStorage.getItem("teams")) || [];
+  teams.push({ teamName, formation }); // Ajouter la formation
+  localStorage.setItem("teams", JSON.stringify(teams)); // Sauvegarder
+  Alertperso("Formation enregistrée avec succès !");
+}
+
+
+
+
+// la fonction pour rechercher une equipe et l'afficher dans le stade
+function affichersquadparnom(teamName) {
+  // Charger les formations existantes
+  const teams = JSON.parse(localStorage.getItem("teams")) || [];
+  const team = teams.find(t => t.teamName.toLowerCase() === teamName.toLowerCase());
+
+  if (!team) {
+    Alertperso("Aucune formation trouvée pour cette équipe.");
+      return;
+  }
+
+  // Vider le terrain avant d'afficher la formation
+  const field = document.getElementById("main");
+  field.innerHTML = "";
+
+  // Afficher la formation sur le terrain
+  team.formation.forEach(({ position, player }) => {
+      const playerCard = document.createElement("div");
+      playerCard.id = position;
+      playerCard.className = "card mx-auto bg-transparent p-4 rounded-lg  relative z-2";
+
+      playerCard.innerHTML = `
+          <div class="relative w-22 h-[170px] bg-[url('https://cdn.easysbc.io/fc25/cards/e_7_0.png')] bg-center bg-cover bg-no-repeat py-3 z-10 transition ease-in duration-200 sm:w-20 sm:h-[140px] md:w-20 md:h-[140px] lg:w-24 lg:h-[150px]">
+      <div class="relative flex text-[#e9cc74] px-1 sm:px-1 md:px-1 lg:px-2">
+        <!-- Player Master Info -->
+        <div class="absolute text-[6px] font-light uppercase leading-3 py-1 sm:py-1 md:py-1">
+          <div class="text-xs sm:text-[10px] md:text-xs lg:text-sm">${player.position}</div>
+          <div class="w-2 h-1 mt-[1px] sm:w-1.5 sm:h-1.5 md:w-2 md:h-2">
+            <img src="${player.country}" alt="Pays" class="object-contain" />
+          </div>
+          <div class="w-2 h-2.5 sm:w-1.5 sm:h-2 md:w-2 md:h-2.5">
+            <img src="${player.club}" alt="Club" class="object-contain" />
+          </div>
+        </div>
+        <!-- Player Picture -->
+        <div class="w-10 h-10 mx-auto overflow-hidden sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12">
+          <img src="${player.image}" alt="Joueur" class="object-contain relative -right-1 sm:-right-0.5 md:-right-1 lg:-right-1.5" />
+        </div>
+      </div>
+      <!-- Player Card Bottom -->
+       <div class="relative">
+          <div class="block text-black w-[90%] mx-auto py-[1px]">
+            <div class="block card-title bg-[#e9cc74] text-center text-[6px] uppercase border-b border-opacity-10 border-[#e9cc74] pb-[1px] sm:text-[5px] md:text-[6px] lg:text-[7px]">
+              <span class="block">${player.name}</span>
+            </div>
+            <div class="cards-stats sm:text-[5px] bg-[#e9cc74] md:text-[6px] lg:text-[7px] text-center mt-1 w-full font-light">
+              ${
+                player.position === "GK"
+                  ? `DIV: ${player.stats.diving}, HAN: ${player.stats.handling}, KIC: ${player.stats.kicking}, REF: ${player.stats.reflexes}, SPD: ${player.stats.speed}, POS: ${player.stats.positioning}`
+                  : `PAC: ${player.stats.pace}, SHO: ${player.stats.shooting}, PAS: ${player.stats.passing}, DRI: ${player.stats.dribbling}, DEF: ${player.stats.defending}, PHY: ${player.stats.physical}`
+              }
+            </div>
+          </div>
+        </div>
+    </div>
+      `;
+
+      // Positionner la carte sur le terrain
+      const [row, col] = position.split("-"); // Exemple : "GK-1" -> ["GK", "1"]
+      playerCard.style.gridRow = row;
+      playerCard.style.gridColumn = col;
+
+      field.appendChild(playerCard);
+  });
+}
 
 
 
@@ -574,3 +742,38 @@ carousel.addEventListener("mouseenter", () => {
 carousel.addEventListener("mouseleave", () => {
     carousel.style.animationPlayState = "running";
 });
+
+
+
+
+
+
+
+// fonction pour personnaliser alert 
+function Alertperso(message) {
+  // Vérifier si une alerte est déjà affichée
+  if (document.getElementById("custom-alert-box")) return;
+
+  // Créer l'élément de la boîte d'alerte
+  const alertBox = document.createElement("div");
+  alertBox.id = "custom-alert-box";
+  alertBox.className = "fixed inset-0 flex items-center justify-center bg-black bg-opacity-50";
+
+  // Contenu de la boîte d'alerte
+  alertBox.innerHTML = `
+      <div class="bg-white rounded-lg shadow-lg w-80 p-4 text-center">
+          <p class="text-gray-800 text-lg font-semibold mb-4">${message}</p>
+          <button id="close-alert-btn" class="px-4 py-2 bg-blue-500 text-white rounded-lg">
+              OK
+          </button>
+      </div>
+  `;
+
+  // Ajouter la boîte au document
+  document.body.appendChild(alertBox);
+
+  // Fermer la boîte d'alerte
+  document.getElementById("close-alert-btn").onclick = () => {
+      alertBox.remove();
+  };
+}

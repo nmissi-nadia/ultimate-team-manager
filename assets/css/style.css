@@ -9,7 +9,7 @@ body{
 
 #reserve {
     display: flex;
-    animation: scroll 10s linear infinite; /* Animation continue */
+    animation: scroll 20s linear infinite; /* Animation continue */
 }
 
 @keyframes scroll {
@@ -19,4 +19,17 @@ body{
     100% {
         transform: translateX(-100%);
     }
+    0%{
+        transform: translateX(100%);
+    }
+}
+
+
+/* parie pour alert */
+#custom-alert-box {
+    z-index: 1000;
+}
+
+.bg-opacity-50 {
+    background: rgba(0, 0, 0, 0.5);
 }

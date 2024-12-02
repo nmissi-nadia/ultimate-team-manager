@@ -12,11 +12,11 @@
 
     <title>Ultimate Team Manager - Créez et Gérez Votre Équipe EA FC 25</title>
 </head>
-<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+<body class="bg-gray-100 overflow-0 font-sans leading-normal tracking-normal">
 
     <header class="bg-gray-800 flex justify-between items-center">
         <!-- <h1 class="text-xl font-bold">EA FC 24 Squad Builder</h1> -->
-        <nav id="navbar" class="bg-gray-900 text-white w-full fixed top-0 z-10 shadow-lg z-20">
+        <nav id="navbar" class="bg-gray-900 text-white w-full fixed top-0 z-30 shadow-lg z-20">
           <div class="container mx-auto flex w-full justify-between items-center py-4 px-6">
             <!-- Logo -->
             <a href="#" class="text-2xl font-bold text-yellow-400 hover:text-yellow-300">Ultimate Team</a>
@@ -67,7 +67,7 @@
 
           <div>
             <label for="player-position" class="block mb-2 text-sm text-gray-200">Position</label>
-            <select id="player-position" class="w-full p-2 rounded-lg text-black bg-green-200" required>
+            <select id="player-position" class="w-full p-2 rounded-lg text-black bg-green-200">
               <option disabled selected>Choisissez la position du joueur</option>
               <option value="GK">Gardien (GK)</option>
               <option value="CB">Défenseur Central (CB)</option>
@@ -83,19 +83,41 @@
           <div>
             <label for="nationality"
               class="block text-gray-200 font-semibold mb-2 text-sm sm:text-base">Nationalité</label>
-              <select id="player-country" class="w-full p-2 rounded-lg bg-green-200 text-black" required>
+              <select id="player-country" class="w-full p-2 rounded-lg bg-green-200 text-black">
                 <option value="" disabled selected>Sélectionnez un pays</option>
-                <option value="https://cdn.sofifa.net/flags/br.png">Brésil</option>
-                <option value="https://cdn.sofifa.net/flags/ar.png">Argentine</option>
-                <option value="https://cdn.sofifa.net/flags/de.png">Allemagne</option>
+                
+                <!-- Afrique -->
+                <option value="https://cdn.sofifa.net/flags/ma.png">Maroc</option>
+                <option value="https://cdn.sofifa.net/flags/sn.png">Sénégal</option>
+                <option value="https://cdn.sofifa.net/flags/cm.png">Cameroun</option>
+            
+                <!-- Europe -->
                 <option value="https://cdn.sofifa.net/flags/fr.png">France</option>
                 <option value="https://cdn.sofifa.net/flags/it.png">Italie</option>
+                <option value="https://cdn.sofifa.net/flags/de.png">Allemagne</option>
                 <option value="https://cdn.sofifa.net/flags/es.png">Espagne</option>
                 <option value="https://cdn.sofifa.net/flags/gb-eng.png">Angleterre</option>
                 <option value="https://cdn.sofifa.net/flags/nl.png">Pays-Bas</option>
                 <option value="https://cdn.sofifa.net/flags/pt.png">Portugal</option>
                 <option value="https://cdn.sofifa.net/flags/be.png">Belgique</option>
-              </select>
+                <option value="https://cdn.sofifa.net/flags/cro.png">Croatie</option>
+            
+                <!-- Amérique du Sud -->
+                <option value="https://cdn.sofifa.net/flags/br.png">Brésil</option>
+                <option value="https://cdn.sofifa.net/flags/ar.png">Argentine</option>
+                <option value="https://cdn.sofifa.net/flags/uy.png">Uruguay</option>
+                <option value="https://cdn.sofifa.net/flags/cl.png">Chili</option>
+                
+                <!-- Asie -->
+                <option value="https://cdn.sofifa.net/flags/kr.png">Corée du Sud</option>
+                <option value="https://cdn.sofifa.net/flags/jp.png">Japon</option>
+            
+                <!-- Amérique du Nord -->
+                <option value="https://cdn.sofifa.net/flags/us.png">États-Unis</option>
+                <option value="https://cdn.sofifa.net/flags/ca.png">Canada</option>
+                <option value="https://cdn.sofifa.net/flags/mx.png">Mexique</option>
+            </select>
+            
               
           </div>
 
@@ -104,29 +126,35 @@
               Joueur</label>
               <select id="photosrc" class="w-full p-2 rounded-lg bg-green-200 text-black">
                 <option disabled selected>Choisissez le nom du joueur pour l'image</option>
+            
+                <!-- Gardiens de but -->
                 <option value="https://cdn.sofifa.net/players/209/981/25_120.png">Yassine Bounou (Morocco)</option>
                 <option value="https://cdn.sofifa.net/players/230/621/25_120.png">Gianluigi Donnarumma (Italy)</option>
+                <option value="https://cdn.sofifa.net/players/212/380/25_120.png">Ederson (Brazil)</option>
+            
+                <!-- Défenseurs -->
                 <option value="https://cdn.sofifa.net/players/203/376/25_120.png">Virgil van Dijk (Netherlands)</option>
                 <option value="https://cdn.sofifa.net/players/205/452/25_120.png">Antonio Rudiger (Germany)</option>
-                <option value="https://cdn.sofifa.net/players/203/376/25_120.png">Virgil van Dijk (Netherlands)</option>
-                <option value="https://cdn.sofifa.net/players/205/452/25_120.png">Antonio Rudiger (Germany)</option>
-                <option value="https://cdn.sofifa.net/players/203/376/25_120.png">Virgil van Dijk (Netherlands)</option>
-                <option value="https://cdn.sofifa.net/players/205/452/25_120.png">Antonio Rudiger (Germany)</option>
-                <option value="https://cdn.sofifa.net/players/192/985/25_120.png">Kevin De Bruyne (Belgium)</option>
-                <option value="https://cdn.sofifa.net/players/212/622/25_120.png">Joshua Kimmich (Germany)</option>
+                <option value="https://cdn.sofifa.net/players/235/212/25_120.png">Achraf Hakimi (Morocco)</option>
+                <option value="https://cdn.sofifa.net/players/238/292/25_120.png">Noussair Mazraoui (Morocco)</option>
+            
+                <!-- Milieux de terrain -->
                 <option value="https://cdn.sofifa.net/players/177/003/25_120.png">Luka Modrić (Croatia)</option>
-                <option value="https://cdn.sofifa.net/players/192/985/25_120.png">Kevin De Bruyne (Belgium)</option>
                 <option value="https://cdn.sofifa.net/players/212/622/25_120.png">Joshua Kimmich (Germany)</option>
-                <option value="https://cdn.sofifa.net/players/177/003/25_120.png">Luka Modrić (Croatia)</option>
                 <option value="https://cdn.sofifa.net/players/192/985/25_120.png">Kevin De Bruyne (Belgium)</option>
-                <option value="https://cdn.sofifa.net/players/212/622/25_120.png">Joshua Kimmich (Germany)</option>
-                <option value="https://cdn.sofifa.net/players/177/003/25_120.png">Luka Modrić (Croatia)</option>
-              </select>
+                <option value="https://cdn.sofifa.net/players/246/126/25_120.png">Azzedine Ounahi (Morocco)</option>
+            
+                <!-- Attaquants -->
+                <option value="https://cdn.sofifa.net/players/211/110/25_120.png">Lionel Messi (Argentina)</option>
+                <option value="https://cdn.sofifa.net/players/247/091/25_120.png">Sofiane Boufal (Morocco)</option>
+                <option value="https://cdn.sofifa.net/players/216/476/25_120.png">Erling Haaland (Norway)</option>
+                <option value="https://cdn.sofifa.net/players/206/113/25_120.png">Hakim Ziyech (Morocco)</option>
+            </select>
               
           </div>
           <div>
             <label for="player-club" class="block text-gray-300 font-semibold mb-2">Sélectionnez le club du joueur :</label>
-              <select id="player-club" class="w-full p-2 rounded-lg bg-green-200 text-black" required>
+              <select id="player-club" class="w-full p-2 rounded-lg bg-green-200 text-black">
                 <option value="" disabled selected>Sélectionnez un club</option>
                 <option value="https://cdn.sofifa.net/meta/team/239235/120.png">Inter Miami</option>
                 <option value="https://cdn.sofifa.net/meta/team/2506/120.png">Al Nassr</option>
@@ -238,7 +266,7 @@
 
           <div class="text-center">
             <input type="submit" id="btnajout"
-              class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-300" value="Ajouter">
+              class="bg-green-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-300" value="Ajouter">
           </div>
 
         </form>
@@ -255,14 +283,14 @@
   
         </div>
           
-        <div id="info" class="bg-gray-900 text-white p-6 rounded-lg shadow-md w-[300px] sm:w-80 block col-span-4  md:block md:col-span-1 mb-10">
+        <div id="info" class="bg-gray-900 text-white p-6 mt-20 rounded-lg shadow-md w-[300px] sm:w-80 block col-span-4  md:block md:col-span-1 mb-10">
             <!-- Create Squad -->
             <div class="mb-6">
-              <label for="squad-name" class="block text-sm font-medium">Create Squad</label>
+              <label for="search-team" class="block text-sm font-medium">Create Squad</label>
               <div class="relative mt-2">
-                <input id="squad-name" type="text" placeholder="Squad name"
+                <input id="search-team" type="text" placeholder="Squad name"
                   class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
-                <button
+                <button onclick="affichersquadparnom(document.getElementById('search-team').value)"
                   class="absolute inset-y-0 right-2 flex items-center px-2 bg-gray-800 text-gray-400 rounded-lg focus:outline-none">
                   <i class="fas fa-search"></i>
                 </button>
@@ -310,18 +338,30 @@
                 <span class="ml-3 text-sm">6/33</span>
               </div>
             </div>
+            <div class="mt-4">
+              <input id="team-name" type="text" placeholder="Nom de l'équipe" 
+                     class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none" />
+              <button onclick="enregistreequipeformation(document.getElementById('team-name').value)"
+                      class="mt-2 px-4 py-2 bg-green-500 text-white rounded-lg">
+                  Enregistrer la formation
+              </button>
+          </div>
         </div>
 
 
 
 
-
-        <div id="reserve"  class="grid col-span-4 sm:grid-cols-3 grid-cols-1 lg:grid-cols-5 h-auto  lg:h-[200px] gap-4 bg-gray-800 p-4 rounded-lg">
-            <!-- Reserve Player Card 1 -->
-             <!-- Manager -->
-            
+        <div class=" col-span-4 h-auto  lg:h-[200px] gap-4 p-4 rounded-lg "><div id="reserve"  class="grid sm:grid-cols-3 grid-cols-1 lg:grid-cols-5 ">
+          <!-- Reserve Player Card 1 -->
+           <!-- Manager -->
           
-          </div>
+        
+        </div></div>
+        <div class="col-span-4 h-auto w-full">
+          <div id="saved-teams" class="mt-6">
+            <!-- Les équipes sauvegardées seront affichées ici -->
+        </div>
+        </div>
            
      </section>
    
