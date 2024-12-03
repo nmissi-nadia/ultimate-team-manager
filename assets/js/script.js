@@ -230,7 +230,7 @@ playerForm.addEventListener("submit", (event) => {
   const playerCountry = document.getElementById("player-country").value.trim();
   const playerImage = document.getElementById("photosrc").value.trim();
   const position = playerPosition.value;
-  const rating = document.getElementById("rating").value.trim();;
+  const rating = document.getElementById("rating").value.trim();
 
   if (!playerName) {
     Alertperso("Le nom du joueur est obligatoire.");
